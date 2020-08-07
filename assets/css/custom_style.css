@@ -1,0 +1,59 @@
+#model{
+  background:rgba(0,0,0,0.7);
+  position:absolute;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  display:none;
+}
+
+#model-form{
+  background: #fff;
+  width:30%;
+  position: relative;
+  top:50%;
+  left:40%;
+  border-radius: 4px;
+}
+
+#model_edit{
+  background:rgba(0,0,0,0.7);
+  position:absolute;
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  display:none;
+}
+
+#model-edit-form{
+  background: #fff;
+  width:50%;
+  height:auto;
+  position: relative;
+  top:10%;
+  left:30%;
+  border-radius: 4px;
+  padding: 30px;
+}
+
+#close-btn{
+  background: red;
+  color: white;
+  width: 30px;
+  height: 30px;
+  line-height: -50px;
+  position: absolute;
+  top:0px;
+  right:0px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.error-message,.success-message{
+  display:none;
+}
+

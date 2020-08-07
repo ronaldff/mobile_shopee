@@ -1,0 +1,571 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<!-- BEGIN HEAD -->
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta name="description" content="Responsive Admin Template" />
+    <meta name="author" content="SmartUniversity" />
+    <title>Spice Hotel | Bootstrap 4 Admin Dashboard Template + UI Kit</title>
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700" rel="stylesheet" type="text/css" />
+	<!-- icons -->
+    <link href="assets/plugins/simple-line-icons/simple-line-icons.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css"/>
+	<!--bootstrap -->
+	<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="assets/plugins/summernote/summernote.css" rel="stylesheet">
+	<!-- morris chart -->
+    <link href="assets/plugins/morris/morris.css" rel="stylesheet" type="text/css" />
+    <!-- Material Design Lite CSS -->
+	<link rel="stylesheet" href="assets/plugins/material/material.min.css">
+	<link rel="stylesheet" href="assets/css/material_style.css">
+	<!-- animation -->
+	<link href="assets/css/pages/animate_page.css" rel="stylesheet">
+	<!-- Template Styles -->
+    <link href="assets/css/plugins.min.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/responsive.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/theme-color.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+	<!-- favicon -->
+    <link rel="shortcut icon" href="assets/img/favicon.ico" /> 
+
+ </head>
+ <!-- END HEAD -->
+<body class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md header-white dark-sidebar-color logo-dark">
+    <div class="page-wrapper">
+        <!-- start header -->
+        <div class="page-header navbar navbar-fixed-top">
+            <div class="page-header-inner ">
+                <!-- logo start -->
+                <div class="page-logo">
+                    <a href="index.html">
+                    <img alt="" src="assets/img/logo.png">
+                    <span class="logo-default" >Spice</span> </a>
+                </div>
+                <!-- logo end -->
+				<ul class="nav navbar-nav navbar-left in">
+					<li><a href="#" class="menu-toggler sidebar-toggler"><i class="icon-menu"></i></a></li>
+				</ul>
+                 <form class="search-form-opened" action="#" method="GET">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search..." name="query">
+                        <span class="input-group-btn search-btn">
+                          <a href="javascript:;" class="btn submit">
+                             <i class="icon-magnifier"></i>
+                           </a>
+                        </span>
+                    </div>
+                </form>
+                
+                <!-- start mobile menu -->
+                <a href="javascript:;" class="menu-toggler responsive-toggler" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span></span>
+                </a>
+               <!-- end mobile menu -->
+                <!-- start header menu -->
+                <div class="top-menu">
+                    <ul class="nav navbar-nav pull-right">
+ 						<!-- start manage user dropdown -->
+ 						<li class="dropdown dropdown-user">
+                            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                                <img alt="" class="img-circle " src="assets/img/dp.jpg" />
+                                <span class="username username-hide-on-mobile"> John </span>
+                                <i class="fa fa-angle-down"></i>
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-default animated jello">
+                                <li>
+                                    <a href="user_profile.html">
+                                        <i class="icon-user"></i> Profile </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-settings"></i> Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-directions"></i> Help
+                                    </a>
+                                </li>
+                                <li class="divider"> </li>
+                                <li>
+                                    <a href="login.html">
+                                        <i class="icon-logout"></i> Log Out </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- end manage user dropdown -->
+                        <li class="dropdown dropdown-quick-sidebar-toggler">
+                             <a id="headerSettingButton" class="mdl-button mdl-js-button mdl-button--icon pull-right" data-upgraded=",MaterialButton">
+	                           <i class="material-icons">settings</i>
+	                        </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <!-- end header -->
+        <!-- start page container -->
+        <div class="page-container">
+ 			<!-- start sidebar menu -->
+ 			<div class="sidebar-container">
+ 				<div class="sidemenu-container navbar-collapse collapse fixed-menu">
+	                <div id="remove-scroll">
+	                    <ul class="sidemenu page-header-fixed p-t-20" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200">
+	                        <li class="sidebar-toggler-wrapper hide">
+	                            <div class="sidebar-toggler">
+	                                <span></span>
+	                            </div>
+	                        </li>
+	                        <li class="sidebar-user-panel">
+	                            <div class="user-panel">
+	                                <div class="row">
+                                            <div class="sidebar-userpic">
+                                                <img src="assets/img/dp.jpg" class="img-responsive" alt=""> </div>
+                                        </div>
+                                        <div class="profile-usertitle">
+                                            <div class="sidebar-userpic-name"> John Deo </div>
+                                            <div class="profile-usertitle-job"> Manager </div>
+                                        </div>
+                                        <div class="sidebar-userpic-btn">
+									        <a class="tooltips" href="user_profile.html" data-placement="top" data-original-title="Profile">
+									        	<i class="material-icons">person_outline</i>
+									        </a>
+									        <a class="tooltips" href="email_inbox.html" data-placement="top" data-original-title="Mail">
+									        	<i class="material-icons">mail_outline</i>
+									        </a>
+									        <a class="tooltips" href="chat.html" data-placement="top" data-original-title="Chat">
+									        	<i class="material-icons">chat</i>
+									        </a>
+									        <a class="tooltips" href="login.html" data-placement="top" data-original-title="Logout">
+									        	<i class="material-icons">input</i>
+									        </a>
+									    </div>
+	                            </div>
+	                        </li>
+	                        
+	                        <li class="nav-item start active">
+	                            <a href="index.html" class="nav-link nav-toggle">
+	                                <i class="material-icons">dashboard</i>
+	                                <span class="title">Dashboard</span>
+	                            </a>
+	                        </li>
+	                        <li class="nav-item">
+	                            <a href="#" class="nav-link nav-toggle">
+	                                <i class="material-icons">email</i>
+	                                <span class="title">Email</span>
+	                                <span class="arrow"></span>
+	                                <span class="label label-rouded label-menu label-danger">new</span>
+	                            </a>
+	                            <ul class="sub-menu">
+	                                <li class="nav-item">
+	                                    <a href="email_inbox.html" class="nav-link ">
+	                                        <span class="title">Inbox</span>
+	                                    </a>
+	                                </li>
+	                                <li class="nav-item">
+	                                    <a href="email_view.html" class="nav-link ">
+	                                        <span class="title">View Mail</span>
+	                                    </a>
+	                                </li>
+	                                <li class="nav-item">
+	                                    <a href="email_compose.html" class="nav-link ">
+	                                        <span class="title">Compose Mail</span>
+	                                    </a>
+	                                </li>
+	                            </ul>
+	                        </li>
+	                        <li class="nav-item">
+	                            <a href="#" class="nav-link nav-toggle">
+	                                <i class="material-icons">business_center</i>
+	                                <span class="title">Booking</span>
+	                                <span class="arrow"></span>
+	                            </a>
+	                            <ul class="sub-menu">
+	                                <li class="nav-item">
+	                                    <a href="new_booking.html" class="nav-link ">
+	                                        <span class="title">New Booking</span>
+	                                    </a>
+	                                </li>
+	                                <li class="nav-item">
+	                                    <a href="view_booking.html" class="nav-link ">
+	                                        <span class="title">View Booking</span>
+	                                    </a>
+	                                </li>
+	                                <li class="nav-item">
+	                                    <a href="edit_booking.html" class="nav-link ">
+	                                        <span class="title">Edit Booking</span>
+	                                    </a>
+	                                </li>
+	                            </ul>
+	                        </li>
+	                        <li class="nav-item">
+	                            <a href="#" class="nav-link nav-toggle">
+	                                <i class="material-icons">vpn_key</i>
+	                                <span class="title">Rooms</span>
+	                                <span class="arrow"></span>
+	                            </a>
+	                            <ul class="sub-menu">
+	                                <li class="nav-item">
+	                                    <a href="add_room.html" class="nav-link ">
+	                                        <span class="title">Add Room Details</span>
+	                                    </a>
+	                                </li>
+	                                <li class="nav-item">
+	                                    <a href="all_rooms.html" class="nav-link ">
+	                                        <span class="title">View All Rooms</span>
+	                                    </a>
+	                                </li>
+	                                <li class="nav-item">
+	                                    <a href="edit_room.html" class="nav-link ">
+	                                        <span class="title">Edit Room Details</span>
+	                                    </a>
+	                                </li>
+	                            </ul>
+	                        </li>
+	                        <li class="nav-item">
+	                            <a href="#" class="nav-link nav-toggle">
+	                                <i class="material-icons">group</i>
+	                                <span class="title">Staff</span>
+	                                <span class="arrow"></span>
+	                            </a>
+	                            <ul class="sub-menu">
+	                                <li class="nav-item">
+	                                    <a href="add_staff.html" class="nav-link ">
+	                                        <span class="title">Add Staff Details</span>
+	                                    </a>
+	                                </li>
+	                                <li class="nav-item">
+	                                    <a href="all_staffs.html" class="nav-link ">
+	                                        <span class="title">View All Staffs</span>
+	                                    </a>
+	                                </li>
+	                                <li class="nav-item">
+	                                    <a href="edit_staff.html" class="nav-link ">
+	                                        <span class="title">Edit Staff Details</span>
+	                                    </a>
+	                                </li>
+	                            </ul>
+	                        </li>
+	                        <li class="nav-item">
+	                            <a href="#" class="nav-link nav-toggle">
+	                                <i class="material-icons">local_taxi</i>
+	                                <span class="title">Transportation</span>
+	                                <span class="arrow"></span>
+	                            </a>
+	                            <ul class="sub-menu">
+	                                <li class="nav-item">
+	                                    <a href="add_vehicle.html" class="nav-link ">
+	                                        <span class="title">Add Vehicle Details</span>
+	                                    </a>
+	                                </li>
+	                                <li class="nav-item">
+	                                    <a href="all_vehicles.html" class="nav-link ">
+	                                        <span class="title">View All Vehicle</span>
+	                                    </a>
+	                                </li>
+	                                <li class="nav-item">
+	                                    <a href="edit_vehicle.html" class="nav-link ">
+	                                        <span class="title">Edit Vehicle Details</span>
+	                                    </a>
+	                                </li>
+	                            </ul>
+	                        </li>
+	                    </ul>
+	                </div>
+                </div>
+            </div>
+            <!-- end sidebar menu --> 
+						<!-- start page content -->
+            <div class="page-content-wrapper">
+              <div class="page-content">
+                <div class="page-bar">
+                	<div class="page-title-breadcrumb">
+                    <div class=" pull-left">
+                      <div class="page-title">User Profile</div>
+                    </div>
+                    <ol class="breadcrumb page-breadcrumb pull-right">
+                      <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="index.html">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
+                      </li>
+                      <li>&nbsp;<a class="parent-item" href="user_profile.html">Extra</a>&nbsp;<i class="fa fa-angle-right"></i>
+                      </li>
+                      <li class="active">User Profile</li>
+                    </ol>
+                  </div>
+                </div>
+                <!-- Add Booking Form -->
+                <div class="row">
+                  <div class="col-md-12 col-sm-12">
+                  	Show Your Profile Here
+              		</div>
+            		</div>
+                 
+                                            
+            <!-- start chat sidebar -->
+            <div class="chat-sidebar-container" data-close-on-body-click="false">
+                <div class="chat-sidebar">
+                    <ul class="nav nav-tabs">
+                    	<li class="nav-item">
+                            <a href="#quick_sidebar_tab_1" class="nav-link active tab-icon"  data-toggle="tab">Theme
+                                </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#quick_sidebar_tab_2" class="nav-link tab-icon"  data-toggle="tab"> Chat
+                                </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#quick_sidebar_tab_3" class="nav-link tab-icon"  data-toggle="tab">  Settings
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                    	<div class="tab-pane chat-sidebar-settings in show active animated shake" role="tabpanel" id="quick_sidebar_tab_1">
+							<div class="slimscroll-style">
+								<div class="theme-light-dark">
+									<h6>Sidebar Theme</h6>
+									<button type="button" data-theme="white" class="btn lightColor btn-outline btn-circle m-b-10 theme-button">Light Sidebar</button>
+									<button type="button" data-theme="dark" class="btn dark btn-outline btn-circle m-b-10 theme-button">Dark Sidebar</button>
+								</div>
+								<div class="theme-light-dark">
+									<h6>Sidebar Color</h6>
+									<ul class="list-unstyled">
+										<li class="complete">
+											<div class="theme-color sidebar-theme">
+												<a href="#" data-theme="white"><span class="head"></span><span class="cont"></span></a>
+												<a href="#" data-theme="dark"><span class="head"></span><span class="cont"></span></a>
+												<a href="#" data-theme="blue"><span class="head"></span><span class="cont"></span></a>
+												<a href="#" data-theme="indigo"><span class="head"></span><span class="cont"></span></a>
+												<a href="#" data-theme="cyan"><span class="head"></span><span class="cont"></span></a>
+												<a href="#" data-theme="green"><span class="head"></span><span class="cont"></span></a>
+												<a href="#" data-theme="red"><span class="head"></span><span class="cont"></span></a>
+											</div>
+										</li>
+									</ul>
+									<h6>Header Brand color</h6>
+									<ul class="list-unstyled">
+										<li class="theme-option">
+											<div class="theme-color logo-theme">
+								             	<a href="#" data-theme="logo-white"><span class="head"></span><span class="cont"></span></a>
+												<a href="#" data-theme="logo-dark"><span class="head"></span><span class="cont"></span></a>
+												<a href="#" data-theme="logo-blue"><span class="head"></span><span class="cont"></span></a>
+												<a href="#" data-theme="logo-indigo"><span class="head"></span><span class="cont"></span></a>
+												<a href="#" data-theme="logo-cyan"><span class="head"></span><span class="cont"></span></a>
+												<a href="#" data-theme="logo-green"><span class="head"></span><span class="cont"></span></a>
+												<a href="#" data-theme="logo-red"><span class="head"></span><span class="cont"></span></a>
+								           	</div>
+								        </li>
+									</ul>
+									<h6>Header color</h6>
+									<ul class="list-unstyled">
+										<li class="theme-option">
+											<div class="theme-color header-theme">
+								             	<a href="#" data-theme="header-white"><span class="head"></span><span class="cont"></span></a>
+								             	<a href="#" data-theme="header-dark"><span class="head"></span><span class="cont"></span></a>
+								             	<a href="#" data-theme="header-blue"><span class="head"></span><span class="cont"></span></a>
+								             	<a href="#" data-theme="header-indigo"><span class="head"></span><span class="cont"></span></a>
+								             	<a href="#" data-theme="header-cyan"><span class="head"></span><span class="cont"></span></a>
+								             	<a href="#" data-theme="header-green"><span class="head"></span><span class="cont"></span></a>
+								             	<a href="#" data-theme="header-red"><span class="head"></span><span class="cont"></span></a>
+								          	</div>
+								        </li>
+									</ul>
+								</div>
+							</div>
+						</div>
+                
+ 						<!-- Start Setting Panel --> 
+ 						<div class="tab-pane chat-sidebar-settings animated slideInUp" id="quick_sidebar_tab_3">
+                            <div class="chat-sidebar-settings-list slimscroll-style">
+                                <div class="chat-header"><h5 class="list-heading">Layout Settings</h5></div>
+	                            <div class="chatpane inner-content ">
+									<div class="settings-list">
+					                    <div class="setting-item">
+					                        <div class="setting-text">Sidebar Position</div>
+					                        <div class="setting-set">
+					                           <select class="sidebar-pos-option form-control input-inline input-sm input-small ">
+	                                                <option value="left" selected="selected">Left</option>
+	                                                <option value="right">Right</option>
+                                            	</select>
+					                        </div>
+					                    </div>
+					                    <div class="setting-item">
+					                        <div class="setting-text">Header</div>
+					                        <div class="setting-set">
+					                           <select class="page-header-option form-control input-inline input-sm input-small ">
+	                                                <option value="fixed" selected="selected">Fixed</option>
+	                                                <option value="default">Default</option>
+                                            	</select>
+					                        </div>
+					                    </div>
+					                    <div class="setting-item">
+					                        <div class="setting-text">Sidebar Menu </div>
+					                        <div class="setting-set">
+					                           <select class="sidebar-menu-option form-control input-inline input-sm input-small ">
+	                                                <option value="accordion" selected="selected">Accordion</option>
+	                                                <option value="hover">Hover</option>
+                                            	</select>
+					                        </div>
+					                    </div>
+					                    <div class="setting-item">
+					                        <div class="setting-text">Footer</div>
+					                        <div class="setting-set">
+					                           <select class="page-footer-option form-control input-inline input-sm input-small ">
+	                                                <option value="fixed">Fixed</option>
+	                                                <option value="default" selected="selected">Default</option>
+                                            	</select>
+					                        </div>
+					                    </div>
+					                </div>
+									<div class="chat-header"><h5 class="list-heading">Account Settings</h5></div>
+									<div class="settings-list">
+					                    <div class="setting-item">
+					                        <div class="setting-text">Notifications</div>
+					                        <div class="setting-set">
+					                            <div class="switch">
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+									                  for = "switch-1">
+									                  <input type = "checkbox" id = "switch-1" 
+									                     class = "mdl-switch__input" checked>
+									               	</label>
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <div class="setting-item">
+					                        <div class="setting-text">Show Online</div>
+					                        <div class="setting-set">
+					                            <div class="switch">
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+									                  for = "switch-7">
+									                  <input type = "checkbox" id = "switch-7" 
+									                     class = "mdl-switch__input" checked>
+									               	</label>
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <div class="setting-item">
+					                        <div class="setting-text">Status</div>
+					                        <div class="setting-set">
+					                            <div class="switch">
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+									                  for = "switch-2">
+									                  <input type = "checkbox" id = "switch-2" 
+									                     class = "mdl-switch__input" checked>
+									               	</label>
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <div class="setting-item">
+					                        <div class="setting-text">2 Steps Verification</div>
+					                        <div class="setting-set">
+					                            <div class="switch">
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+									                  for = "switch-3">
+									                  <input type = "checkbox" id = "switch-3" 
+									                     class = "mdl-switch__input" checked>
+									               	</label>
+					                            </div>
+					                        </div>
+					                    </div>
+					                </div>
+                                    <div class="chat-header"><h5 class="list-heading">General Settings</h5></div>
+                                    <div class="settings-list">
+					                    <div class="setting-item">
+					                        <div class="setting-text">Location</div>
+					                        <div class="setting-set">
+					                            <div class="switch">
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+									                  for = "switch-4">
+									                  <input type = "checkbox" id = "switch-4" 
+									                     class = "mdl-switch__input" checked>
+									               	</label>
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <div class="setting-item">
+					                        <div class="setting-text">Save Histry</div>
+					                        <div class="setting-set">
+					                            <div class="switch">
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+									                  for = "switch-5">
+									                  <input type = "checkbox" id = "switch-5" 
+									                     class = "mdl-switch__input" checked>
+									               	</label>
+					                            </div>
+					                        </div>
+					                    </div>
+					                    <div class="setting-item">
+					                        <div class="setting-text">Auto Updates</div>
+					                        <div class="setting-set">
+					                            <div class="switch">
+					                                <label class = "mdl-switch mdl-js-switch mdl-js-ripple-effect" 
+									                  for = "switch-6">
+									                  <input type = "checkbox" id = "switch-6" 
+									                     class = "mdl-switch__input" checked>
+									               	</label>
+					                            </div>
+					                        </div>
+					                    </div>
+					                </div>
+	                        	</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end chat sidebar -->
+        </div>
+        <!-- end page container -->
+        <!-- start footer -->
+        <div class="page-footer">
+            <div class="page-footer-inner"> 2018 &copy; Spice Hotel Template By
+            <a href="mailto:redstartheme@gmail.com" target="_top" class="makerCss">RedStar Theme</a>
+            </div>
+            <div class="scroll-to-top">
+                <i class="icon-arrow-up"></i>
+            </div>
+        </div>
+        <!-- end footer -->
+    </div>
+    <!-- start js include path -->
+    <script src="assets/plugins/jquery/jquery.min.js" ></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="assets/plugins/popper/popper.min.js" ></script>
+    <script src="assets/plugins/jquery-blockui/jquery.blockui.min.js" ></script>
+	<script src="assets/plugins/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+    <!-- bootstrap -->
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js" ></script>
+    <script src="assets/plugins/sparkline/jquery.sparkline.min.js" ></script>
+	<script src="assets/js/pages/sparkline/sparkline-data.js" ></script>
+    <!-- Common js-->
+	<script src="assets/js/app.js" ></script>
+    <script src="assets/js/layout.js" ></script>
+    <script src="assets/js/theme-color.js" ></script>
+    <!-- material -->
+    <script src="assets/plugins/material/material.min.js"></script>
+    <!-- animation -->
+    <script src="assets/js/pages/ui/animations.js" ></script>
+    <!-- morris chart -->
+    <script src="assets/plugins/morris/morris.min.js" ></script>
+    <script src="assets/plugins/morris/raphael-min.js" ></script>
+    <script src="assets/js/pages/chart/morris/morris_home_data.js" ></script>
+    <!-- end js include path -->
+  </body>
+</html>
+ <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+    $( "#datepickers" ).datepicker();
+  } );
+  </script>
+
+  <script>
+// Add the following code if you want the name of the file appear on select
+$(".custom-file-input").on("change", function() {
+  var fileName = $(this).val().split("\\").pop();
+  $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
+});
+</script>

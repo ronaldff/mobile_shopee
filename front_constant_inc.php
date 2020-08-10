@@ -1,5 +1,5 @@
 <?php
-  define("SITE_URL", "http://localhost/piyush/mobile_shopee/");
-  define("PRODUCT_URL", "http://localhost/piyush/mobile_shopee/admin_shop_mobile/media/product/");
+  define("SITE_URL", "http://localhost/mobile_shopee/");
+  define("PRODUCT_URL", "http://localhost/mobile_shopee/admin_shop_mobile/media/product/");
 
 ?>

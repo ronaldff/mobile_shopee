@@ -513,6 +513,33 @@ a.text-white-50:hover {
     outline: none;
 }
 
+.send_otp_email{
+    margin-top: 18%;
+}
+
+#u_email{
+    width: 40%;
+    margin-left: 17px;
+}
+
+#error_email{
+    margin-left: 17px;
+    margin-top: 10px;
+}
+
+#email_otp{
+    width:27%;
+}
+
+button.email_sent_otp{
+  margin:0px 5px;  
+}
+
+.email_verify_otp {
+    margin:0px 3px;
+    display: none;
+}
+
 
 
 

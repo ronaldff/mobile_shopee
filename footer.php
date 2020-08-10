@@ -85,6 +85,69 @@
 
 	} 
 
+	/*functions---------------------------------------------------
+    2.email_sent_otp
+	---------------------------------------------------*/
+	function email_sent_otp(){
+		$("#error_email").html('');
+		var u_email = $("#u_email").val();
+		if(u_email === ''){
+			$("#error_email").html('Please Insert Email For verification');
+		} else {
+			$(".email_sent_otp ").html("Please Wait...");
+			$(".email_sent_otp ").attr("disabled", true);
+			$.ajax({
+				url : "send_otp.php",
+				type : "post",
+				data : {u_email : u_email, type : 'email'},
+				success : data => {
+
+					if(data === "done"){
+
+						$("#error_email").html('Please Check The Mail');
+						$("#u_email").attr("disabled", true);
+						$(".email_sent_otp ").hide();
+						$(".email_verify_otp").show();
+					} else {
+						$(".email_sent_otp ").html("Resend OTP");
+						$(".email_sent_otp ").attr("disabled", false);
+						$("#error_email").html('Please try again.');
+					}
+					
+				}
+			})
+		}
+	}
+
+	/*functions---------------------------------------------------
+    2.email_verify_otp
+	---------------------------------------------------*/
+	function email_verify_otp(){
+		$("#error_email").html('');
+		var email_otp = $("#email_otp").val();
+		if(email_otp === ''){
+			$("#error_email").html('Enter OTP');
+		} else {
+			$.ajax({
+				url : "check_otp.php",
+				type : "post",
+				data : {email_otp : email_otp, type : 'email'},
+				success : data => {
+					if(data === "done"){
+						$(".email_verify_otp ").hide();
+						$("#error_email").html('Email verified.');
+						$("#is_email_verified").val('1');
+					} else {
+						$("#error_email").html('Please enter valid otp.');
+					}
+					
+				}
+			})
+			
+		}
+
+	}
+
 	$(document).ready(function(){
     /*---------------------------------------------------
     1. Register user
@@ -121,36 +184,44 @@
 			}
 			if(is_error === '')
 			{
-				if(sub_name_btn === 'Register'){
-					$.ajax({
-						url : "<?php echo SITE_URL; ?>register_user_account.php",
-						type : "POST",
-						data : {u_name:u_name,u_mobile:u_mobile,u_email:u_email,u_password:u_password,sub_name_btn:sub_name_btn},
-						success : data => {
-							if(data === "email_exist"){
-								$("#error_email").html("Email is exist");
+				var is_email_verified = $("#is_email_verified").val();
+				if(is_email_verified == '1'){
+					if(sub_name_btn === 'Register'){
+						$.ajax({
+							url : "<?php echo SITE_URL; ?>register_user_account.php",
+							type : "POST",
+							data : {u_name:u_name,u_mobile:u_mobile,u_email:u_email,u_password:u_password,sub_name_btn:sub_name_btn},
+							success : data => {
+								if(data === "email_exist"){
+									$("#error_email").html("Email is exist");
+								}
+								if(data === "correct"){
+									$("#rsuccess-message").show();
+									$("#rsuccess-message").text("Registered Successfully");
+									$("#u_email").attr("disabled", false);
+									$("#is_email_verified").val('');
+									$("#register_user_data")[0].reset();
+									setTimeout(() => {
+										$("#rerror-message").hide();
+										$("#rsuccess-message").hide();
+									}, 3000);
+								}
+								if(data === "incorrect"){
+									$("#rerror-message").show();
+									$("#rerror-message").text("Registration Unsuccessfully");
+									$("#register_user_data")[0].reset();
+									setTimeout(() => {
+										$("#rerror-message").hide();
+										$("#rsuccess-message").hide();
+									}, 3000);
+								}
 							}
-							if(data === "correct"){
-								$("#rsuccess-message").show();
-								$("#rsuccess-message").text("Registered Successfully");
-								$("#register_user_data")[0].reset();
-								setTimeout(() => {
-									$("#rerror-message").hide();
-									$("#rsuccess-message").hide();
-								}, 3000);
-							}
-							if(data === "incorrect"){
-								$("#rerror-message").show();
-								$("#rerror-message").text("Registered Successfully");
-								$("#register_user_data")[0].reset();
-								setTimeout(() => {
-									$("#rerror-message").hide();
-									$("#rsuccess-message").hide();
-								}, 3000);
-							}
-						}
-					})
+						})
+					}
+				} else {
+					$("#error_email").html('Please verify Your email-ID');
 				}
+				
 			}
     });
   

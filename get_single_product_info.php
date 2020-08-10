@@ -131,27 +131,10 @@
                          </div>
                          <div class="col-6"></div>
                      </div>
-
-                    <!-- size -->
-                        <div class="size my-3">
-                            <h6 class="font-baloo">Size :</h6>
-                            <div class="d-flex justify-content-between w-75">
-                                <div class="font-rubik border p-2">
-                                    <button class="btn p-0 font-size-14">4GB RAM</button>
-                                </div>
-                                <div class="font-rubik border p-2">
-                                    <button class="btn p-0 font-size-14">6GB RAM</button>
-                                </div>
-                                <div class="font-rubik border p-2">
-                                    <button class="btn p-0 font-size-14">8GB RAM</button>
-                                </div>
-                            </div>
-                        </div>
-                    <!-- !size -->
                 </div>
 
-                <div class="col-12">
-                    <h6 class="font-rubik">Product Description</h6>
+                <div class="col-md-12">
+                    <h6 class="font-rubik mt-5 text-uppercase"><strong><u>Product Description</u></strong></h6>
                     <hr>
                     <p class="font-rale font-size-14"><?php (isset($single_product_data) && !empty($single_product_data)) ? print_r(ucwords($single_product_data['long_desc'])) : " " ?></p>
                 </div>

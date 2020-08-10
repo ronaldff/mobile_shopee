@@ -56,9 +56,9 @@
               <label for="email">Email</label>
               <div class="row form-group">
                   <input type="email" id="u_email" name="u_email" class="form-control" placeholder="Your Email Address">
-                  <button type="button" class="email_sent_otp btn"  onclick="email_sent_otp();">Send OTP</button>
+                  <button type="button" class="email_sent_otp btn color-second-bg text-white"  onclick="email_sent_otp();">Send OTP</button>
                   <input type="number" id="email_otp" class="form-control email_verify_otp" placeholder="Enter OTP">
-                  <button type="button" class="email_verify_otp btn"  onclick="email_verify_otp();">Verify OTP</button>
+                  <button type="button" class="email_verify_otp btn color-second-bg text-white"  onclick="email_verify_otp();">Verify OTP</button>
                   <span id="error_email" class="field_error text-danger"></span>
               </div>
 

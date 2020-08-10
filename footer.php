@@ -96,19 +96,23 @@
 		} else {
 			$(".email_sent_otp ").html("Please Wait...");
 			$(".email_sent_otp ").attr("disabled", true);
+			$("#u_email").attr("disabled", true);
 			$.ajax({
 				url : "send_otp.php",
 				type : "post",
 				data : {u_email : u_email, type : 'email'},
 				success : data => {
-
 					if(data === "done"){
-
 						$("#error_email").html('Please Check The Mail');
 						$("#u_email").attr("disabled", true);
 						$(".email_sent_otp ").hide();
 						$(".email_verify_otp").show();
-					} else {
+					} else if(data == 'email_exist'){
+						$("#error_email").html('Email ID already exist.');
+						$(".email_sent_otp ").html("Send OTP");
+						$(".email_sent_otp ").attr("disabled", false);
+						$("#u_email").attr("disabled", false);
+					}else {
 						$(".email_sent_otp ").html("Resend OTP");
 						$(".email_sent_otp ").attr("disabled", false);
 						$("#error_email").html('Please try again.');
@@ -120,7 +124,7 @@
 	}
 
 	/*functions---------------------------------------------------
-    2.email_verify_otp
+    3.email_verify_otp
 	---------------------------------------------------*/
 	function email_verify_otp(){
 		$("#error_email").html('');

@@ -87,6 +87,10 @@
 							<a class="nav-link" href="<?php  echo SITE_URL; ?>contact.php">Contact</a>
 						</li>
 				</ul>
+				<form class="form-inline my-2 my-lg-0" method="post" action="search_product.php">
+					<input class="form-control mr-sm-2" type="text" name="search_product" placeholder="Search Products" aria-label="Search">
+				</form>
+				
 				<div class="font-size-14 font-rale">
 					<a href="<?php echo SITE_URL; ?>cart.php" class="py-2 rounded-pill color-primary-bg">
 						<span class="font-size-16 px-2 text-white"><i class="fas fa-shopping-cart"></i></span>

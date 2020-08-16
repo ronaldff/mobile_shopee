@@ -19,6 +19,9 @@
 
 	
 ?>
+<style>
+	
+</style>
 	  <!-- start #main-site -->
 	  <main id="main-site">
 
@@ -101,19 +104,15 @@
 						if(isset($product_empty_array) && !empty($product_empty_array) && count($product_empty_array) > 0){
 								foreach($product_empty_array as $key => $product ){ ?>
 								<div class="grid-item border <?php echo ucfirst($product['category_name']); ?>">
-									<div class="item py-2" style="width: 200px;">
+									<div class="item py-2 wishlist_icon_show" style="width: 200px;">
 										<div class="product font-rale">
 											<a href="<?php echo SITE_URL; ?>get_single_product_info.php?id=<?php echo $product['id']; ?>"><img src="<?php echo PRODUCT_URL; ?><?php echo $product['product_image']; ?>" alt="product1" class="img-fluid"></a>
 											<div class="text-center">
 											<h6><?php echo ucfirst($product['product_name']); ?></h6>
 											<div class="rating text-warning font-size-12">
-												<span><i class="fas fa-star"></i></span>
-												<span><i class="fas fa-star"></i></span>
-												<span><i class="fas fa-star"></i></span>
-												<span><i class="fas fa-star"></i></span>
-												<span><i class="far fa-star"></i></span>
+												<div class="fas fa-heart wishlist_icon" onclick="add_whislist(<?php echo $product['id'] ?>)"></div>
 											</div>
-											<div class="price py-2">
+											<div class="price py-2 dx">
 												<span class="line-through" style="text-decoration:line-through;"><?php echo $product['product_mrp'] . 'Rs'; ?></span>
                     		<span><?php echo $product['product_sale_price'] . 'Rs'; ?></span>
 											</div>
@@ -216,7 +215,9 @@
 		  </section>
 		<!-- !Blogs -->
 
-	  </main>
+		</main>
+	
   <!-- !start #main-site -->
 <?php require_once("footer.php"); ?>
+
 

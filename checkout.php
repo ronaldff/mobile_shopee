@@ -159,7 +159,7 @@
 									<div class="accordion__body">
 										<div class="accordion__body__form">
 											<div class="row">
-												<div class="col-md-6">
+												<div class="col-md-12">
 													<div class="checkout-method__login">
 													<form id="login_user_data">
 														<h5 class="checkout-method__title">login</h5>
@@ -174,17 +174,22 @@
 															</div>
 														</div>
 														<div class="form-group text-center mt-5">
-															<input type="submit" value="SignIn" id="login_user" name="login_user" class="btn color-second-bg text-white">
+															<input type="submit" value="Login" id="login_user" name="login_user" class="btn color-second-bg text-white">
 														</div>
 													</form>
+													<div class="text-center">
+														<a href="create_account.php">Create Account From This Link</a>
+													</div>
+													
 													</div>
 												</div>
-												<div class="col-md-6">
+												<hr>
+												<div class="col-md-12">
 													<div class="checkout-method__login">
 														<div class="alert alert-success text-center" id="rsuccess-message" style="display:none"></div>
 														<div class="alert alert-danger text-center" id="rerror-message" style="display:none"></div>
-														<form id="register_user_data">
-														<h5 class="checkout-method__title">register</h5>
+														<!-- <form id="register_user_data">
+															<h5 class="checkout-method__title">register</h5>
 															<div class="row form-group">
 																<div class="col-md-6">
 																	<input type="text" id="u_name" class="form-control" placeholder="Your Full Name" name="u_name">
@@ -211,7 +216,7 @@
 															<div class="form-group text-center mt-5">
 																<input type="submit" value="Register" id="register_user" name="register_user" class="btn color-second-bg text-white">
 															</div>
-														</form>	
+														</form>	 -->
 													</div>
 												</div>
 											</div>

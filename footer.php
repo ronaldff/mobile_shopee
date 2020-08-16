@@ -14,7 +14,7 @@
 				  <input type="text" class="form-control" placeholder="Email *">
 				</div>
 				<div class="col">
-				  <button type="submit" class="btn color-second-bg text-white mb-2">Subscribe</button>
+				  <button type="submit" class="btn color-second-bg text-white mb-2 ddc">Subscribe</button>
 				</div>
 			  </form>
 			</div>
@@ -79,7 +79,8 @@
 					window.location.href = window.location.href;
 				}
 				$("#shopping_data").html(data);
-
+				getWishlistData(pid);
+				fetchWishlistData();
 			}
 		});
 
@@ -150,6 +151,100 @@
 			
 		}
 
+	}
+
+	/*functions---------------------------------------------------
+    4.wishlist count function
+	---------------------------------------------------*/
+	function getWishlistData(product_id){
+		$.ajax({
+			url : 'getWishlistData.php',
+			type : 'post',
+			data : {product_id : product_id},
+			success : data => {
+				$("#wishlistCount").html(data);
+			}
+		})
+	}
+
+	getWishlistData();
+
+	/*functions---------------------------------------------------
+    5.ADD WISHLIST
+	---------------------------------------------------*/
+	function add_whislist(pro_id){
+		let proId = pro_id;
+		$.ajax({
+			url : 'whislist.php',
+			type : 'post',
+			data : {proId : proId},
+			success : result => {
+				if(result === 'not_loggedin'){
+					alert("Please login for adding the wishlist")
+					window.location.href='create_account.php';
+				}
+
+				if(result === 'already_added'){
+					alert("Already added");
+				}
+
+				if(result === 'wishlist_added'){
+					alert("wishlist added");
+					getWishlistData();
+					
+				}
+			}		
+		})
+	}
+
+	/*functions---------------------------------------------------
+    6.FETCH WISHLIST DATA
+	---------------------------------------------------*/
+	function fetchWishlistData(){
+		$.ajax({
+			url : 'fetchwishlist.php',
+			type : 'get',
+			success : data => {
+				if(data === ''){
+					
+				} else {
+					let wishlists = JSON.parse(data);
+					let output = '';
+					wishlists.forEach(wishlist => {
+						output += `<tr>
+								<td class='product-remove'><i class='fa fa-trash' onclick='removeWishlistProduct(${wishlist.id})'></i></td>
+
+								<td class='product-thumbnail'><a href='<?php echo SITE_URL; ?>get_single_product_info.php?id=${wishlist.id}' class='font-rale'><img src='<?php echo PRODUCT_URL ?>${wishlist.product_image}' alt='product' class='img-fluid'></a></td>
+
+								<td class='product-name'><a href='<?php echo SITE_URL; ?>get_single_product_info.php?id=${wishlist.id}' class='font-rale'>${wishlist.product_name}</a></td>
+						
+								<td class='product-price'><span class='amount'>Rs${wishlist.product_sale_price}</span></td>
+
+								<td class='product-add-to-cart'>
+									<button type='submit' class='btn btn-warning font-size-12' onclick='manageCart(${wishlist.id},"add")'>Add to Cart</button>
+								</td>
+						
+							</tr>
+						`
+					});
+					$("#wishlistData").html(output);
+				}
+				
+			}
+		})
+	}
+	
+	fetchWishlistData();
+
+	/*functions---------------------------------------------------
+    7.REMOVE WISHLIST DATA
+	---------------------------------------------------*/
+	function removeWishlistProduct(product_id){
+		if(confirm("Are You Want To Delete This Product?")){
+			getWishlistData(product_id);
+			fetchWishlistData();
+		}
+		
 	}
 
 	$(document).ready(function(){
@@ -234,10 +329,10 @@
     ---------------------------------------------------*/
     $("#login_user_data").submit(e => {
 			e.preventDefault();
+			
 			$(".field_error").html('');
 			let lemail_id = $("#lemail_id").val();
 			let lpassword = $("#lpassword").val();
-			let sub_name_btn = $("#login_user").val();
 			let is_error = '';
 			
 			if(lemail_id === ''){
@@ -250,25 +345,40 @@
 			}
 			if(is_error === '')
 			{
-				if(sub_name_btn === 'SignIn'){
 					$.ajax({
 						url : "<?php echo SITE_URL; ?>login_user_account.php",
 						type : "POST",
-						data : {lemail_id:lemail_id,lpassword:lpassword,sub_name_btn:sub_name_btn},
+						data : {lemail_id:lemail_id,lpassword:lpassword},
 						success : data => {
+							
+							if(data === "correct"){
+								window.location.href = window.location.href;
+							}
+
 							if(data == "incorrect"){
 								$("#lerror_password").html("Password is incorrect");
 							}
 							if(data === "email_wrong"){
 								$("#lerror_email").html("Email is incorrect");
 							}
-							if(data === "correct"){
-								window.location.href = window.location.href;
-							}
+							
 						}
 					})
-				}
 			}
-    })
-  })
+		})
+		
+		// WISHLIST ICON ANIMATION
+		$(".wishlist_icon_show").mouseenter(function(){
+			$(".wishlist_icon", this).css('display', 'block');
+			$(".wishlist_icon", this).animate({right:'10px'},"slow");
+		})
+
+		$(".wishlist_icon_show").mouseleave(function(){
+			$(".wishlist_icon", this).css('display', 'none');
+			$(".wishlist_icon", this).animate({right:'0'});
+		})
+		
+	})
+	
+	
 </script>

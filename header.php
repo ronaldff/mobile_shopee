@@ -12,6 +12,16 @@
 			$resultarray[] = $row;
 		}
 	}
+
+	// wishlist count
+	// if(isset($_SESSION['USER_LOGIN']) && !empty($_SESSION['USER_LOGIN'])){
+	// 	$uid = $_SESSION['REGISTER_USER_ID'];
+	// 	$row_count = mysqli_query($conn, "SELECT * FROM wishlist WHERE user_id='{$uid}'");
+	// 	$wishlist_count = mysqli_num_rows($row_count);
+	// } else {
+	// 	$wishlist_count = 0;
+	// }
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,8 +66,12 @@
 						}
 					
 					?>
+					<?php 
+						if(isset($_SESSION['USER_LOGIN']) && !empty($_SESSION['USER_LOGIN'])){ ?>
+							<a href="wishlist_page.php" class="px-3 border-right text-dark">Whishlist (<span id="wishlistCount">0</span>)</a>
+					<?php	}
+					?>
 						
-						<a href="#" class="px-3 border-right text-dark">Whishlist (0)</a>
 				</div>
 		</div>
 

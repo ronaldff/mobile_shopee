@@ -4,10 +4,9 @@
   if(isset($_POST['search_product']) && !empty($_POST['search_product'])){
    
     $product_search = get_safe_value($conn,$_POST['search_product']);
-  
 
     // get search products
-    $get_products = "SELECT * FROM product WHERE (product_name LIKE '%{$product_search}%' AND status='1') OR short_desc LIKE '%{$product_search}%' ";
+    $get_products = "SELECT * FROM product WHERE product_name LIKE '%{$product_search}%' AND status='1'";
     $product_result = mysqli_query($conn, $get_products);
     $product_empty_array = array();
     if(mysqli_num_rows($product_result) === 0){ ?>
@@ -29,7 +28,7 @@
 <!-- Top Sale -->
 <section id="top-sale">
     <div class="container py-5">
-      <h4 class="font-rubik font-size-20">SEARCH | <?php print_r(strtoupper($product_empty_array[0]['category_name'])); ?></h4>
+      <!-- <h4 class="font-rubik font-size-20">Search Product</h4> -->
       <hr>
       <!-- owl carousel -->
       <div class="row">

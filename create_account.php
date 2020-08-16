@@ -28,7 +28,7 @@
                 </div>
               </div>
               <div class="form-group text-center mt-5">
-                <input type="submit" value="SignIn" id="login_user" name="login_user" class="btn color-second-bg text-white">
+                <input type="submit" value="Login" id="login_user" name="login_user" class="btn color-second-bg text-white">
               </div>
             </form>		
           </div>

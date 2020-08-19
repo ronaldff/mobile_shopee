@@ -3,7 +3,7 @@
 <?php 
   if(isset($_GET['id']) && !empty($_GET['id'])){
    
-    $cat_id = trim($_GET['id']);
+    $cat_id = get_safe_value($conn,$_GET['id']);
     // getproducts
     $get_products = "SELECT * FROM product WHERE categories_id='{$cat_id}' AND status='1' ORDER BY 'created_at' DESC LIMIT 5";
     $product_result = mysqli_query($conn, $get_products);
@@ -20,6 +20,8 @@
       echo "Data Not Found";
     }
 
+  } else {
+    header("Location:index.php");
   }
 ?>
 <!-- Top Sale -->

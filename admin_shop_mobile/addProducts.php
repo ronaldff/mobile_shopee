@@ -6,6 +6,7 @@
 
   if(isset($_FILES['product_image']['name']) && !empty($_FILES['product_image']['name'])){
     $product_name = get_safe_value($conn,strtolower($_POST['product_name']));
+    $best_seller = get_safe_value($conn,$_POST['best_seller']);
     $sql = "SELECT product_name FROM product WHERE product_name='{$product_name}'";
     $db_product_data = mysqli_query($conn, $sql);
     if(mysqli_num_rows($db_product_data) >= 0){
@@ -31,7 +32,7 @@
           $meta_keyword = get_safe_value($conn,strtolower($_POST['meta_keyword']));
           $short_desc = get_safe_value($conn,strtolower($_POST['short_desc']));
           $long_desc = get_safe_value($conn,strtolower($_POST['long_desc']));
-          $sql = "INSERT INTO product (categories_id,category_name,product_name,product_mrp,product_sale_price,product_qty,product_image,short_desc,long_desc,meta_title,meta_desc,meta_keyword) VALUES ('{$categories_id}','{$category_name}','{$product_name}','{$product_mrp}','{$product_sale_price}','{$product_qty}','{$product_image}','{$short_desc}','{$long_desc}','{$meta_title}','{$meta_desc}','{$meta_keyword}')";
+          $sql = "INSERT INTO product (categories_id,category_name,product_name,best_seller,product_mrp,product_sale_price,product_qty,product_image,short_desc,long_desc,meta_title,meta_desc,meta_keyword) VALUES ('{$categories_id}','{$category_name}','{$product_name}','{$best_seller}','{$product_mrp}','{$product_sale_price}','{$product_qty}','{$product_image}','{$short_desc}','{$long_desc}','{$meta_title}','{$meta_desc}','{$meta_keyword}')";
           $result = mysqli_query($conn, $sql);
           if($result === true){
             echo "2";

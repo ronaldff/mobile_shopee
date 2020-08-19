@@ -17,6 +17,15 @@
 		sort($unique_brand);
 	}
 
+	$sql = "SELECT * FROM product WHERE best_seller='1' AND status='1' LIMIT 10";
+	$best_product_results = mysqli_query($conn, $sql);
+	$best_data = array();
+	if(mysqli_num_rows($best_product_results) > 0){
+		while($bestSeller = mysqli_fetch_assoc($best_product_results)){
+			$best_data[] = $bestSeller;
+		}
+	}
+
 	
 ?>
 <style>
@@ -45,7 +54,6 @@
 		<section id="top-sale">
 		  <div class="container py-5">
 			<h4 class="font-rubik font-size-20">Top Sale</h4>
-			<hr>
 			<!-- owl carousel -->
 			  <div class="owl-carousel owl-theme">
           <?php 
@@ -53,16 +61,17 @@
               foreach($product_empty_array as $key => $product ){ 
                 ?>
                 <div class="item py-2">
-                  <div class="product font-rale">
+                  <div class="product font-rale wishlist_icon_show border py-3" style="margin:0px 5px">
                   <a href="<?php echo SITE_URL; ?>get_single_product_info.php?id=<?php echo $product['id']; ?>"><img src="<?php echo PRODUCT_URL; ?><?php echo $product['product_image']; ?>" alt="product1" class="img-fluid"></a>
                   <div class="text-center">
                     <h6><?php echo ucfirst($product['product_name']); ?></h6>
                     <div class="rating text-warning font-size-12">
-                    <span><i class="fas fa-star"></i></span>
-                    <span><i class="fas fa-star"></i></span>
-                    <span><i class="fas fa-star"></i></span>
-                    <span><i class="fas fa-star"></i></span>
-                    <span><i class="far fa-star"></i></span>
+											<!-- <span><i class="fas fa-star"></i></span>
+											<span><i class="fas fa-star"></i></span>
+											<span><i class="fas fa-star"></i></span>
+											<span><i class="fas fa-star"></i></span>
+											<span><i class="far fa-star"></i></span> -->
+											<div class="fas fa-heart wishlist_icon" onclick="add_whislist(<?php echo $product['id'] ?>)"></div>
                     </div>
                     <div class="price py-2">
                     <span class="line-through" style="text-decoration:line-through;"><?php echo $product['product_mrp'] . 'Rs'; ?></span>
@@ -116,7 +125,7 @@
 												<span class="line-through" style="text-decoration:line-through;"><?php echo $product['product_mrp'] . 'Rs'; ?></span>
                     		<span><?php echo $product['product_sale_price'] . 'Rs'; ?></span>
 											</div>
-											<button type="submit" class="btn btn-warning font-size-12" onclick="manageCart(<?php echo $product['id'] ?>,'add')">Add to Cart</button>
+											<button type="submit" class="btn btn-warning font-size-12 mb-3" onclick="manageCart(<?php echo $product['id'] ?>,'add')">Add to Cart</button>
 											</div>
 										</div>
 									</div>
@@ -129,52 +138,82 @@
 		</section>
 	  <!-- !Special Price -->
 
-	  <!-- Banner Ads  -->
-		<section id="banner_adds">
-		  <div class="container py-5 text-center">
-			<img src="assets/banner1-cr-500x150.jpg" alt="banner1" class="img-fluid">
-			<img src="assets/banner2-cr-500x150.jpg" alt="banner1" class="img-fluid">
-		  </div>
+	  <!-- Best  Seller Area -->
+		<section class="ptb--100">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="section__title--2 text-center">
+							<h2 class="title__line text-center font-rubik">Best Seller</h2>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<!-- Start Single Category -->
+					<?php array_map(function($best_seller){ ?>
+					<div class="col-md-4 col-lg-3 col-sm-4 col-xs-12">
+						<div class="category wishlist_icon_show border">
+							<div class="ht__cat__thumb">
+								<a href="<?php echo SITE_URL; ?>get_single_product_info.php?id=<?php echo $best_seller['id']; ?>"><img src="<?php echo PRODUCT_URL; ?><?php echo $best_seller['product_image']; ?>" alt="product1" class="img-fluid"></a>
+							</div>
+							<div class="fr__hover__info">
+							<div class="fas fa-heart wishlist_icon" onclick="add_whislist(<?php echo $best_seller['id'] ?>)"></div>
+							</div>
+							<div class="fr__product__inner">
+								<h4 class="text-center font-rubik"><?php echo ucfirst($best_seller['product_name']); ?></h4>
+								<div class="price py-2 dx text-center font-rubik">
+									<span class="line-through" style="text-decoration:line-through;"><?php echo 'Rs'.$best_seller['product_mrp']; ?></span>
+									<span><?php echo 'Rs'.$best_seller['product_sale_price']; ?></span>
+									<div class="my-3">
+										<button type="submit" class="btn btn-warning font-size-12" onclick="manageCart(<?php echo  $best_seller['id']; ?>,'add')">Add to Cart</button>
+									</div>
+								</div>
+								
+							</div>
+						</div>
+					</div>
+					<?php	}, $best_data); ?>
+				</div>
+			</div>
 		</section>
-	  <!-- !Banner Ads  -->
+		<!-- End Product Area -->
 
 		<!-- New Phones -->
 		<section id="new-phones">
 		  <div class="container">
 			<h4 class="font-rubik font-size-20">New Phones</h4>
-			<hr>
 
-				  <!-- owl carousel -->
-				  <div class="owl-carousel owl-theme">
-						<?php
-							if(isset($product_empty_array) && !empty($product_empty_array) && count($product_empty_array) > 0){
-								foreach($product_empty_array as $key => $product ){ ?>
-								<div class="item py-2 bg-light">
-									<div class="product font-rale">
-									<a href="<?php echo SITE_URL; ?>get_single_product_info.php?id=<?php echo $product['id']; ?>"><img src="<?php echo PRODUCT_URL; ?><?php echo $product['product_image']; ?>" alt="product1" class="img-fluid"></a>
-									<div class="text-center">
-										<h6><?php echo ucfirst($product['product_name']); ?></h6>
-										<div class="rating text-warning font-size-12">
+				<!-- owl carousel -->
+				<div class="owl-carousel owl-theme">
+					<?php
+						if(isset($product_empty_array) && !empty($product_empty_array) && count($product_empty_array) > 0){
+							foreach($product_empty_array as $key => $product ){ ?>
+							<div class="item py-2 bg-light">
+								<div class="product font-rale wishlist_icon_show border py-3" style="margin:0px 5px">
+								<a href="<?php echo SITE_URL; ?>get_single_product_info.php?id=<?php echo $product['id']; ?>"><img src="<?php echo PRODUCT_URL; ?><?php echo $product['product_image']; ?>" alt="product1" class="img-fluid"></a>
+								<div class="text-center">
+									<h6><?php echo ucfirst($product['product_name']); ?></h6>
+									<div class="rating text-warning font-size-12">
+										<!-- <span><i class="fas fa-star"></i></span>
 										<span><i class="fas fa-star"></i></span>
 										<span><i class="fas fa-star"></i></span>
 										<span><i class="fas fa-star"></i></span>
-										<span><i class="fas fa-star"></i></span>
-										<span><i class="far fa-star"></i></span>
-										</div>
-										<div class="price py-2">
-											<span class="line-through" style="text-decoration:line-through;"><?php echo $product['product_mrp'] . 'Rs'; ?></span>
-											<span><?php echo $product['product_sale_price'] . 'Rs'; ?></span>
-										</div>
-										<button type="submit" class="btn btn-warning font-size-12" onclick="manageCart(<?php echo $product['id'] ?>,'add')">Add to Cart</button>
+										<span><i class="far fa-star"></i></span> -->
+										<div class="fas fa-heart wishlist_icon" onclick="add_whislist(<?php echo $product['id'] ?>)"></div>
 									</div>
+									<div class="price py-2">
+										<span class="line-through" style="text-decoration:line-through;"><?php echo $product['product_mrp'] . 'Rs'; ?></span>
+										<span><?php echo $product['product_sale_price'] . 'Rs'; ?></span>
+									</div>
+									<button type="submit" class="btn btn-warning font-size-12" onclick="manageCart(<?php echo $product['id'] ?>,'add')">Add to Cart</button>
 								</div>
 							</div>
+						</div>
 
-						<?php	}}?>
-							
-				  </div>
+					<?php	}}?>
+						
+				</div>
 				<!-- !owl carousel -->
-
 		  </div>
 		</section>
 		<!-- !New Phones -->

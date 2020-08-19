@@ -17,6 +17,7 @@
       }
     }
     $product_name = get_safe_value($conn,strtolower($_POST['product_name']));
+    $best_seller = get_safe_value($conn,strtolower($_POST['best_seller']));
     $product_mrp = get_safe_value($conn,strtolower($_POST['product_mrp']));
     $product_sale_price = get_safe_value($conn,strtolower($_POST['product_sale_price']));
     $product_qty = get_safe_value($conn,strtolower($_POST['product_qty']));
@@ -26,7 +27,7 @@
     $meta_keyword = get_safe_value($conn,strtolower($_POST['meta_keyword']));
     $short_desc = get_safe_value($conn,strtolower($_POST['short_desc']));
     $long_desc = get_safe_value($conn,strtolower($_POST['long_desc']));
-    $sql = "UPDATE product SET `categories_id`='{$categories_id}',`product_name`='{$product_name}',`product_mrp`='{$product_mrp}',`product_sale_price`='{$product_sale_price}',`product_qty`='{$product_qty}',`product_image`='{$product_image}',`short_desc`='{$short_desc}',`long_desc`='{$long_desc}',`meta_title`='{$meta_title}',`meta_desc`='{$meta_desc}',`meta_keyword`='{$meta_keyword}' WHERE `id`='{$_POST['pro_id']}'";
+    $sql = "UPDATE product SET `categories_id`='{$categories_id}',`product_name`='{$product_name}',`best_seller`='{$best_seller}',`product_mrp`='{$product_mrp}',`product_sale_price`='{$product_sale_price}',`product_qty`='{$product_qty}',`product_image`='{$product_image}',`short_desc`='{$short_desc}',`long_desc`='{$long_desc}',`meta_title`='{$meta_title}',`meta_desc`='{$meta_desc}',`meta_keyword`='{$meta_keyword}' WHERE `id`='{$_POST['pro_id']}'";
     $result = mysqli_query($conn,$sql);
     if($result === true){
       echo '1';

@@ -638,6 +638,35 @@ button.email_sent_otp{
 }
 
 
+.category {
+    overflow: hidden;
+    position: relative;
+}
+
+.category {
+    position: relative;
+    margin-top: 40px;
+}
+
+.ht__cat__thumb a img {
+    width: 100%;
+}
+.product__wrap {
+    margin-top: 30px;
+}
+
+.section__title--2 h2 {
+    color: #313131;
+    font-size: 40px;
+    font-weight: 700;
+}
+
+/* .category:hover{
+    border: 1px solid;
+    background: currentColor;
+} */
+
+
 
 
 

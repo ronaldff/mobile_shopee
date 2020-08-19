@@ -1,4 +1,5 @@
 <?php
+ 
 	require_once("importantfile.php");
   require_once("Add_to_cart_inc.php");
   $obj = new Add_to_cart_inc();
@@ -12,23 +13,13 @@
 			$resultarray[] = $row;
 		}
 	}
-
-	// wishlist count
-	// if(isset($_SESSION['USER_LOGIN']) && !empty($_SESSION['USER_LOGIN'])){
-	// 	$uid = $_SESSION['REGISTER_USER_ID'];
-	// 	$row_count = mysqli_query($conn, "SELECT * FROM wishlist WHERE user_id='{$uid}'");
-	// 	$wishlist_count = mysqli_num_rows($row_count);
-	// } else {
-	// 	$wishlist_count = 0;
-	// }
-	
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Mobile</title>
+    <title>Online Mobile <?php echo $title; ?></title>
 
     <!-- Bootstrap cdn -->
     <link rel="stylesheet" href="<?php  echo SITE_URL; ?>assets/bootstrap/css/bootstrap.min.css" />

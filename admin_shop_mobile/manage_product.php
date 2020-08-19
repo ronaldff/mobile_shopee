@@ -128,7 +128,14 @@
               </div>
             </div>
           </div>
-
+          <div class="form-group">
+            <label for="best_seller">Best Seller:</label>
+            <select class="form-control" id="best_seller" name="best_seller" required>
+              <option value="">Select Best Seller</option>
+              <option value="1">Yes</option>
+              <option value="0">No</option>
+            </select>
+          </div>
           <div class="form-group">
             <label>Short Description:</label>
             <textarea class="form-control" rows="2" id="short_desc" name="short_desc" required></textarea>
@@ -203,7 +210,7 @@
 
     })
 
-    // Show Model Box and load category
+    // Show Model Box and load category for edit
     $(document).on('click', '#product_edit', function(e){
       e.preventDefault();
       $("#model_edit").show();

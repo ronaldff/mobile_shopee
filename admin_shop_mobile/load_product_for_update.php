@@ -60,7 +60,37 @@
                       </div>
                     </div>
                   </div>
-
+                  ";
+                  if($row['best_seller'] === '1'){
+                    $output .= "<div class='form-group'>
+                    <label for='best_seller'>Best Seller:</label>
+                    <select class='form-control' id='best_seller' name='best_seller' required>
+                      <option value=''>Select Best Seller</option>
+                      <option value='1' selected=''>Yes</option>
+                      <option value='0'>No</option>
+                    </select>
+                  </div>";
+                  } else if($row['best_seller'] === '0') {
+                    $output .= "<div class='form-group'>
+                    <label for='best_seller'>Best Seller:</label>
+                    <select class='form-control' id='best_seller' name='best_seller' required>
+                      <option value=''>Select Best Seller</option>
+                      <option value='1' >Yes</option>
+                      <option value='0' selected=''>No</option>
+                    </select>
+                  </div>";
+                  } else {
+                    $output .= "<div class='form-group'>
+                    <label for='best_seller'>Best Seller:</label>
+                    <select class='form-control' id='best_seller' name='best_seller' required>
+                      <option value=''>Select Best Seller</option>
+                      <option value='1' >Yes</option>
+                      <option value='0'>No</option>
+                    </select>
+                  </div>";
+                  }
+                  
+                $output .=  "
                   <div class='form-group'>
                     <label>Short Description:</label>
                     <textarea class='form-control' rows='2' id='short_desc' name='short_desc' required>{$row['short_desc']}</textarea>

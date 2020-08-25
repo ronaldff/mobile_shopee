@@ -49,6 +49,10 @@
 	<script src="<?php  echo SITE_URL; ?>assets/js/jquery.popper.min.js"></script>
 	<script src="<?php  echo SITE_URL; ?>assets/bootstrap/js/bootstrap.min.js"></script>
 	<script src="<?php  echo SITE_URL; ?>assets/font-awesome/js/all.min.js"></script>
+
+	<!-- sweetalert link -->
+	<script src="<?php  echo SITE_URL; ?>assets/js/sweetalert.min.js"></script>
+
 	
 	<!-- owl carousel script tags -->
 	<script src="<?php  echo SITE_URL; ?>assets/OwlCarousel2/js/owl.carousel.min.js"></script>
@@ -60,7 +64,7 @@
 </body>
 </html>
 <script>
-
+	
 	/*functions---------------------------------------------------
     1.manageCart
 	---------------------------------------------------*/
@@ -180,8 +184,15 @@
 			data : {proId : proId},
 			success : result => {
 				if(result === 'not_loggedin'){
-					alert("Please login for adding the wishlist")
-					window.location.href='create_account.php';
+					swal("Please login for adding the wishlist")
+					$("button.swal-button").click(function(){
+						let confirmBox = $(this).text();
+						if(confirmBox === "OK"){
+							window.location.href='create_account.php';
+						}
+					})
+					
+					
 				}
 
 				if(result === 'already_added'){

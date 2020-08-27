@@ -7,6 +7,7 @@
 		$email_otp = get_safe_value($conn, $_POST['email_otp']);
                 if($_SESSION['EMAIL_OTP'] == $email_otp){
                         echo "done";
+                        unset($_SESSION['EMAIL_OTP']);
                 }
 		
         }

@@ -258,6 +258,97 @@
 		
 	}
 
+	/*functions---------------------------------------------------
+    8.SEND FORGOT PASSWORD LINK
+	---------------------------------------------------*/
+	function forgot_password(){
+		$("#ferror-message").html('');
+		$("#fsuccess-message").html('');
+		
+		let femail_id = $("#femail_id").val();
+		if(femail_id === ''){
+			$("#ferror-message").show();
+			$("#ferror-message").html('Please Fill the fields properly');
+			setTimeout(() => {
+				$("#ferror-message").hide();
+				$("#fsuccess-message").hide();
+			}, 3000);
+		} else {
+			$(".forgot_password_text").html("Please Wait...");
+			$(".forgot_password_text").attr("disabled", true);
+			$("#femail_id").attr("disabled", true);
+
+			$.ajax({
+				url : "send_otp.php",
+				type : "post",
+				data : {femail_id : femail_id, type : 'forget_password'},
+				success : data => {
+					if(data === "done"){
+						$("#fsuccess-message").show();
+						$("#fsuccess-message").html('Plese check your mail for the reset link.');
+						$("#femail_id").val('');
+						$(".forgot_password_text").html("Send Link For Reset Password");
+						$(".forgot_password_text").attr("disabled", false);
+						$("#femail_id").attr("disabled", false);
+						setTimeout(() => {
+							$("#ferror-message").hide();
+							$("#fsuccess-message").hide();
+						}, 3000);
+					} else if(data === "error") {
+						$("#ferror-message").show();
+						$("#ferror-message").html('Please enter registered email address.');
+						$("#femail_id").val('');
+						$(".forgot_password_text").html("Send Link For Reset Password");
+						$(".forgot_password_text").attr("disabled", false);
+						$("#femail_id").attr("disabled", false);
+						setTimeout(() => {
+							$("#ferror-message").hide();
+							$("#fsuccess-message").hide();
+						}, 3000);
+					}
+					
+				}
+			})
+		}
+	}
+
+	/*functions---------------------------------------------------
+    8.RESET PASSWORD
+	---------------------------------------------------*/
+	function reset_password(){
+		$('#reset_error-message').html('');
+		let rpassword = $("#rpassword").val();
+		if(rpassword === ''){
+			$("#reset_error-message").show();
+			$("#reset_error-message").html('Please Fill the fields properly');
+			setTimeout(() => {
+				$("#reset_error-message").hide();
+			}, 3000);
+		} else {
+			$(".reset_password_text").html("Please Wait...");
+			$(".reset_password_text").attr("disabled", true);
+			$("#rpassword").attr("disabled", true);
+			$.ajax({
+				url : "send_otp.php",
+				type : "post",
+				data : {rpassword : rpassword, type : 'reset_password'},
+				success : data => {
+					if(data === "done"){
+						swal("Password changed successfully")
+						$("button.swal-button").click(function(){
+							let confirmBox = $(this).text();
+							if(confirmBox === "OK"){
+								window.location.href='create_account.php';
+							}
+						})
+					} else if(data === "error") {
+						window.location.href="index.php";
+					}
+				}
+			})
+		}
+	}
+
 	$(document).ready(function(){
     /*---------------------------------------------------
     1. Register user

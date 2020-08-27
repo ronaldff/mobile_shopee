@@ -29,6 +29,7 @@
               </div>
               <div class="form-group text-center mt-5">
                 <input type="submit" value="Login" id="login_user" name="login_user" class="btn color-second-bg text-white">
+                <a href="forget_password.php" class="btn color-second-bg text-white">Forget Password</a>
               </div>
             </form>		
           </div>

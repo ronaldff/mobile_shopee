@@ -19,7 +19,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online Mobile <?php echo $title; ?></title>
+    <title> <?php echo $title; ?></title>
 
     <!-- Bootstrap cdn -->
     <link rel="stylesheet" href="<?php  echo SITE_URL; ?>assets/bootstrap/css/bootstrap.min.css" />

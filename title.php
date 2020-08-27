@@ -5,10 +5,13 @@
 
   switch ($page) {
     case "index.php":
-      $title = 'Home';
+      $title = 'Online Mobile Home';
       break;
     case "contact.php":
-      $title = 'Contact';
+      $title = 'Online Mobile Contact';
+      break;
+    case "forget_password.php":
+      $title = "Forget Password";
       break;
     case "category_wise_product.php":
       if(isset($_GET['id']) && !empty($_GET['id'])){

@@ -71,7 +71,6 @@ $(document).ready(function(){
          type : 'POST',
          data : {username : username,password:password,status:status},
          success : function(data){
-            
             if(data == "wrong credential"){
                displayMessage("please insert correct credential", false);
                $("#login_form")[0].reset();

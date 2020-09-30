@@ -3,6 +3,11 @@
 
     public function add_to_cart($pid,$qty){
       $_SESSION['cart'][$pid]['qty'] = $qty;
+      ?>
+      <script>
+        alert('Product added in the cart');
+      </script>
+      <?php
     }
 
 
@@ -16,6 +21,11 @@
     public function removeProduct($pid){
       if(isset($_SESSION['cart'][$pid])){
         unset($_SESSION['cart'][$pid]);
+        ?>
+        <script>
+          alert("product removed from the cart");
+        </script>
+        <?php
       }
     }
 

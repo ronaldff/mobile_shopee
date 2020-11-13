@@ -12,7 +12,7 @@
 		$payment_type = get_safe_value($conn,$_POST['payment_type']);
 		$payment_status = 'pending';
   	if($payment_type === 'chash_on_delivery'){
-  		$payment_status = 'success';
+  		$payment_status = 'pending';
   	}
   	$totalCalculation = 0; 
 		foreach ($_SESSION['cart'] as $key => $cartData) { 
@@ -188,35 +188,6 @@
 													<div class="checkout-method__login">
 														<div class="alert alert-success text-center" id="rsuccess-message" style="display:none"></div>
 														<div class="alert alert-danger text-center" id="rerror-message" style="display:none"></div>
-														<!-- <form id="register_user_data">
-															<h5 class="checkout-method__title">register</h5>
-															<div class="row form-group">
-																<div class="col-md-6">
-																	<input type="text" id="u_name" class="form-control" placeholder="Your Full Name" name="u_name">
-																	<span id="error_name" class="field_error text-danger"></span>
-																</div>
-																
-																<div class="col-md-6">
-																	<input type="number" id="u_mobile" name="u_mobile"class="form-control" placeholder="Your Mobile">
-																	<span id="error_mobile" class="field_error text-danger"></span>
-																</div>
-															</div>
-
-															<div class="row form-group">
-																<div class="col-md-12 mb-3">
-																	<input type="email" id="u_email" name="u_email" class="form-control" placeholder="Your Email Address">
-																	<span id="error_email" class="field_error text-danger"></span>
-																</div>
-																<div class="col-md-12">
-																	<input type="password" id="u_password" class="form-control" placeholder="Your password" name="u_password">
-																	<span id="error_password" class="field_error text-danger"></span>
-																</div>
-															</div>
-
-															<div class="form-group text-center mt-5">
-																<input type="submit" value="Register" id="register_user" name="register_user" class="btn color-second-bg text-white">
-															</div>
-														</form>	 -->
 													</div>
 												</div>
 											</div>

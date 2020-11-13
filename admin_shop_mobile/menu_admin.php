@@ -20,14 +20,6 @@
                       <div class="sidebar-userpic-name"> <?php echo AUTHOR_NAME; ?> </div>
                       <div class="profile-usertitle-job"> <?php echo AUTHOR_JOB; ?> </div>
                     </div>
-                    <div class="sidebar-userpic-btn" style="text-align:center;display:block;">
-                      <a class="tooltips" href="user_profile.html" data-placement="top" data-original-title="Profile">
-                        <i class="material-icons">person_outline</i>
-                      </a>
-                      <a class="tooltips" href="login.html" data-placement="top" data-original-title="Logout">
-                        <i class="material-icons">input</i>
-                      </a>
-                    </div>
                   </div>
                   
               </li>

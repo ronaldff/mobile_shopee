@@ -1,7 +1,7 @@
 
      <!-- start #footer -->
      
-	  <div class="copyright text-center bg-dark text-white py-2 mt-3">
+	  <div class="copyright text-center bg-dark text-white py-2 mt-3 footer_class">
 		<p class="font-rale font-size-14 m-0">&copy; Copyrights <?php echo date("Y") . ' ' . date("M"); ?>. Designed By <a href="<?php  echo SITE_URL; ?>" class="color-second">Piyush Shyam</a></p>
 	  </div>
   <!-- !start #footer -->
@@ -315,7 +315,7 @@
     /*---------------------------------------------------
     1. Register user
     ---------------------------------------------------*/
-    $("#register_user_data").submit(e => {
+    	$("#register_user_data").submit(e => {
 			e.preventDefault();
 			$(".field_error").html('');
 			let u_name = $("#u_name").val();

@@ -36,14 +36,6 @@
 
             </div>
             <hr>
-            <!-- model code -->
-            <!-- <div id="model">
-              <div id="model-form">
-                <h4 class="text-center text-primary">Edit Product</h4>
-                <table cellpadding="0" width="100%" class="table text-center"></table>
-                <div id="close-btn">x</div>
-              </div>
-            </div> -->
             <div>
               <div class=" pull-left">
                 <div class="page-title" id="product_list_title">Products List</div>
@@ -334,6 +326,8 @@
             $('#close_model').trigger('click');
             location.reload(true);
           } else if(data === "3"){
+            console.log('3');
+
             alert("Sorry, only jpg, jpeg, png files are allowed");
             $("#product_form")[0].reset();
             $('#close_model').trigger('click');

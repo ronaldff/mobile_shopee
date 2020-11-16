@@ -38,7 +38,7 @@
     <link href="<?php defined("ADMIN_LOGIN_LINK_URL") ?  print_r(ADMIN_LOGIN_LINK_URL) : ""; ?>css/responsive.css" rel="stylesheet" type="text/css" />
     <link href="<?php defined("ADMIN_LOGIN_LINK_URL") ?  print_r(ADMIN_LOGIN_LINK_URL) : ""; ?>css/theme-color.css" rel="stylesheet" type="text/css" />
 	<!-- favicon -->
-    <link rel="shortcut icon" href="<?php defined("ADMIN_LOGIN_LINK_URL") ?  print_r(ADMIN_LOGIN_LINK_URL) : ""; ?>img/favicon.ico" /> 
+    <link rel="shortcut icon" href="<?php defined("ADMIN_LOGIN_LINK_URL") ?  print_r(ADMIN_LOGIN_LINK_URL) : ""; ?>img/favicon.png" /> 
  </head>
  
  <!-- END HEAD -->
@@ -51,10 +51,12 @@
           <div class="page-logo">
             <a href="<?php  defined("ROUTE_AJAX_URL") ?  print_r(ROUTE_AJAX_URL) : ""; ?>dashboard.php">
               <img alt="" src="<?php defined("ADMIN_LOGIN_LINK_URL") ?  print_r(ADMIN_LOGIN_LINK_URL) : "";?>logo/13.png" style="width:50px;" class="img-fluid">
-              <span class="logo-default" ><?php 
-                defined("DEFAULT_NAME") ?  print_r(DEFAULT_NAME) : "";
-                 ?>
-                </span> 
+              <span class="logo-default" >
+                <?php 
+                  $_SESSION['ADMIN_ROLE'] === '1' ? print_r($_SESSION['ADMIN_USERNAME']) : print_r(DEFAULT_NAME);
+                    
+                ?>
+              </span> 
             </a>
           </div>
           <!-- logo end -->
@@ -82,19 +84,23 @@
               <!-- start manage user dropdown -->
               <li class="dropdown dropdown-user">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                    <img alt=""  src="<?php  
+                  <?php if($_SESSION['ADMIN_ROLE'] === '1') { ?>
+                    <img src="<?php echo ADMIN_LOGIN_LINK_URL; ?>img/vendor.png" class="img-responsive" alt="vendor">
+                  <?php  } else { ?>
+                    <img alt="admin"  src="<?php  
                       defined("ADMIN_LOGIN_LINK_URL") ?  print_r(ADMIN_LOGIN_LINK_URL) : "";
                     ?>img/piyush.jpg" />
+                  <?php   }  ?>
                     <span class="username username-hide-on-mobile text-capitalize"><?php 
                       isset($_SESSION['ADMIN_USERNAME']) ? print_r($_SESSION['ADMIN_USERNAME']) :  print_r("Piyush");
                     ?> </span>
                     <i class="fa fa-angle-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-default animated jello">
-                    <li>
-                        <a href="user_profile.html">
+                    <!-- <li>
+                        <a href="javascript:void(0)">
                             <i class="icon-user"></i> Profile </a>
-                    </li>
+                    </li> -->
                     <li class="divider"> </li>
                     <li>
                         <a href="<?php defined("ROUTE_AJAX_URL") ?  print_r(ROUTE_AJAX_URL) : ""; ?>logout.php">

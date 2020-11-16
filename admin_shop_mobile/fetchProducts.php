@@ -3,6 +3,7 @@
  require_once("admin_constant.php");
  require_once("../functions.inc.php");
 
+
  $limit_per_page = 5;
  $page = "";
  if(isset($_POST['page_no'])){
@@ -13,7 +14,12 @@
 
  $offset = ($page - 1) * $limit_per_page;
 
- $sql = "SELECT product.*,categories.categories_name FROM product INNER JOIN categories ON product.categories_id = categories.id LIMIT {$offset},{$limit_per_page}";
+ $condition = '';
+ if($_SESSION['ADMIN_ROLE'] === '1'){
+   $condition = " AND product.added_by='".$_SESSION['ADMIN_ID']."'";
+ }
+
+ $sql = "SELECT product.*,categories.categories_name FROM product INNER JOIN categories ON product.categories_id = categories.id $condition ORDER BY product.id desc LIMIT {$offset},{$limit_per_page}";
  $result = mysqli_query($conn,$sql);
  $output = '';
  $i = 0;
@@ -29,6 +35,7 @@
                         <th>MRP</th>
                         <th>Sale Price</th>
                         <th>QTY</th>
+                        <th>Added By</th>
                         <th>Status</th>
                         <th>Created At</th>
                         <th>Action</th>
@@ -46,6 +53,11 @@
                   <td>{$row['product_mrp']}</td>
                   <td>{$row['product_sale_price']}</td>
                   <td>{$row['product_qty']}</td>";
+                  if($row['added_by'] === '1'){
+                    $output .= "<td>Admin</td>";
+                  } else {
+                    $output .= "<td>Vendor</td>";
+                  }
                   $output .=  "<td>";
                   if($row['status'] === '0'){
                     $output .= "<button type='button' class='btn btn-danger status_change_product' data-status={$row['status']} data-id={$row['id']}>deactive</button>";
@@ -63,7 +75,7 @@
    $output .= '</tbody>';
    $output .= '</table>';
 
-   $sql_total = "SELECT * FROM product";
+   $sql_total = "SELECT * FROM product WHERE added_by = '{$_SESSION['ADMIN_ID']}'";
    $records = mysqli_query($conn,$sql_total);
    $total_record = mysqli_num_rows($records);
 

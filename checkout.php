@@ -57,7 +57,6 @@
 			$action = '';
 			
 			if(!empty($_POST)) {
-					//print_r($_POST);
 				foreach($_POST as $key => $value) {    
 					$posted[$key] = $value; 
 				

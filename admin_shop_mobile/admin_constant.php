@@ -8,8 +8,4 @@
   define("ADMIN_LOGIN_LINK_URL", "http://localhost/mobile_shopee/assets/");
   define("ROUTE_AJAX_URL", "http://localhost/mobile_shopee/admin_shop_mobile/");
   define("PRODUCT_IMAGE_URL", ".././admin_shop_mobile/media/product/");
-
- 
-
-
 ?>

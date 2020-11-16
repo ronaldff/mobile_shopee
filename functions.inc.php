@@ -17,5 +17,19 @@
   	
   }
 
+  function isAdmin(){
+    if($_SESSION['ADMIN_ROLE'] === '1'){ ?>
+      <script>
+        window.location.href ="manage_product.php";
+      </script>
+   <?php }
+  } 
 
+  function isAdminRole(){
+    if($_SESSION['ADMIN_ROLE'] === '0'){ ?>
+      <script>
+        window.location.href ="manage_product.php";
+      </script>
+   <?php }
+  } 
 ?>

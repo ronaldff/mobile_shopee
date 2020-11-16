@@ -1,5 +1,5 @@
 <?php
-// print_r($_POST);
+
 require_once("importantfile.php");
 echo '<b>Transaction In Process, Please do not reload</b>';
 $status=$_POST["status"];

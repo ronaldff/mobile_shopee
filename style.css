@@ -666,6 +666,13 @@ button.email_sent_otp{
     background: currentColor;
 } */
 
+.footer_class{
+    position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
 
 
 

@@ -1,6 +1,7 @@
 <?php 
 require_once("../connection.inc.php");
 require_once("../functions.inc.php");
+ isAdmin() 
 ?>
 <?php include_once("admin_constant.php"); ?>
 <?php include_once("header_admin.php"); ?>
@@ -28,7 +29,7 @@ require_once("../functions.inc.php");
         <ol class="breadcrumb page-breadcrumb pull-right">
           <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="<?php echo ROUTE_AJAX_URL;?>dashboard.php">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
           </li>
-          <li>&nbsp;<a class="parent-item" href="<?php echo ROUTE_AJAX_URL;?>manage_order_details.php">Order Details</a>&nbsp;<i class="fa fa-angle-right"></i>
+          <li>&nbsp;<a class="parent-item" href="<?php echo ROUTE_AJAX_URL;?>manage_order_details.php?id=<?php echo $order_id; ?>">Order Details</a>&nbsp;<i class="fa fa-angle-right"></i>
           </li>
           <li class="active">List Orders Details</li>
         </ol>

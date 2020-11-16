@@ -1,6 +1,8 @@
 <?php include_once("admin_constant.php"); ?>
 <?php include_once("header_admin.php"); ?>
 <?php include_once("menu_admin.php"); ?>
+<?php require_once("../functions.inc.php"); ?>
+<?php isAdmin() ?>
 <!-- start page content -->
 
 <div class="page-content-wrapper">

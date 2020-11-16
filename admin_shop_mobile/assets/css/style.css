@@ -7716,6 +7716,10 @@ nav-tabs>li {
     padding: 20px 5px;
     font-size: 13px;
     background-color: #222c3c;
+    position: fixed;
+    left: 0;
+    bottom:0;
+    width: 100%;
 }
 .page-footer:after,
 .page-footer:before {

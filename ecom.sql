@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 07, 2020 at 02:46 PM
--- Server version: 10.4.13-MariaDB
--- PHP Version: 7.2.32
+-- Generation Time: Nov 16, 2020 at 03:07 PM
+-- Server version: 10.4.14-MariaDB
+-- PHP Version: 7.4.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,15 +30,21 @@ SET time_zone = "+00:00";
 CREATE TABLE `admin_user` (
   `id` int(11) NOT NULL,
   `admin_user` varchar(200) NOT NULL,
-  `admin_password` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `admin_password` varchar(200) NOT NULL,
+  `role` int(11) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `mobile` bigint(15) NOT NULL,
+  `status` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin_user`
 --
 
-INSERT INTO `admin_user` (`id`, `admin_user`, `admin_password`) VALUES
-(1, 'piyush', 'a1d52fb9e6adfb2d64eaa229d64df5bddcd2201f');
+INSERT INTO `admin_user` (`id`, `admin_user`, `admin_password`, `role`, `email`, `mobile`, `status`) VALUES
+(1, 'piyush', 'piyush', 0, 'admin@gmail.com', 5555555555, 1),
+(2, 'vendor', 'vendor', 1, 'vendor@gmail.com', 2244556677, 1),
+(3, 'vendor2', 'vendor2', 1, 'vendor2@gmail.com', 1234567894, 1);
 
 -- --------------------------------------------------------
 
@@ -51,14 +57,14 @@ CREATE TABLE `categories` (
   `categories_name` varchar(200) NOT NULL,
   `status` tinyint(4) NOT NULL DEFAULT 0,
   `created` timestamp NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `categories_name`, `status`, `created`) VALUES
-(2, 'apple', 1, '2020-08-01 12:51:21'),
+(2, 'apple', 0, '2020-08-01 12:51:21'),
 (3, 'motorola', 1, '2020-08-01 12:51:40'),
 (4, 'samsung', 1, '2020-08-01 12:51:46'),
 (5, 'nokia', 1, '2020-08-01 12:51:52'),
@@ -77,7 +83,7 @@ CREATE TABLE `contact_us` (
   `mobile` bigint(12) NOT NULL,
   `comment` text NOT NULL,
   `contact_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `contact_us`
@@ -106,14 +112,15 @@ CREATE TABLE `order` (
   `mihpayid` varchar(200) NOT NULL,
   `total_price` float NOT NULL,
   `added_on` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `order`
 --
 
 INSERT INTO `order` (`id`, `user_id`, `user_address`, `user_city`, `user_post_code`, `payment_type`, `payment_status`, `payu_status`, `order_status`, `txnid`, `mihpayid`, `total_price`, `added_on`) VALUES
-(1, 1, 'rgrr', 'we', 4561, 'online_payment', 'success', 'success', '1', '9511a908130cfd19c184', '9083953697', 5545, '2020-08-01 04:48:03');
+(1, 5, 'wegfgf', 'egfgf', 4535, 'chash_on_delivery', 'pending', '', '1', '0', '', 121, '2020-11-16 08:09:50'),
+(2, 5, 'srgvrg', 'tyijt', 4535, 'chash_on_delivery', 'pending', '', '1', '0', '', 4, '2020-11-16 10:07:37');
 
 -- --------------------------------------------------------
 
@@ -127,15 +134,15 @@ CREATE TABLE `order_details` (
   `product_id` int(11) NOT NULL,
   `qty` int(11) NOT NULL,
   `price` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `order_details`
 --
 
 INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `qty`, `price`) VALUES
-(1, 1, 2, 1, 90),
-(2, 1, 13, 1, 5455);
+(1, 1, 10, 1, 121),
+(2, 2, 37, 1, 4);
 
 -- --------------------------------------------------------
 
@@ -146,7 +153,7 @@ INSERT INTO `order_details` (`id`, `order_id`, `product_id`, `qty`, `price`) VAL
 CREATE TABLE `order_status_data` (
   `id` int(11) NOT NULL,
   `status_name` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `order_status_data`
@@ -170,6 +177,7 @@ CREATE TABLE `product` (
   `categories_id` int(11) NOT NULL,
   `category_name` varchar(200) NOT NULL,
   `product_name` varchar(200) NOT NULL,
+  `best_seller` int(11) NOT NULL DEFAULT 0,
   `product_mrp` float NOT NULL,
   `product_sale_price` float NOT NULL,
   `product_qty` int(11) NOT NULL,
@@ -180,27 +188,30 @@ CREATE TABLE `product` (
   `meta_desc` varchar(100) NOT NULL,
   `meta_keyword` varchar(100) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `status` tinyint(4) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `status` tinyint(4) NOT NULL DEFAULT 0,
+  `added_by` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `categories_id`, `category_name`, `product_name`, `product_mrp`, `product_sale_price`, `product_qty`, `product_image`, `short_desc`, `long_desc`, `meta_title`, `meta_desc`, `meta_keyword`, `created_at`, `status`) VALUES
-(1, 4, 'samsung', 'galaxy s6 edge', 644, 50, 10, '780317976_1.png', 'sdvd', 'sdvdsvvvsdvvsdv sdvvdsvv sdvvdvv sdvdvdsv', 'sdvds', 'sdvd', 'sdvdv', '2020-08-01 13:04:02', 1),
-(2, 5, 'nokia', 'nokia 6600', 200, 90, 50, '119354896_2.png', 'dvdvdv', 'sdvdsv', 'vdv', 'dvdv', 'sdvv', '2020-08-01 13:26:51', 1),
-(3, 6, 'redmi', 'redmi note 7 pro', 562, 20, 20, '824297576_3.png', 'dvd', 'sdvdsv', 'vddsvds', 'sdvdsv', 'dvdsvdv', '2020-08-01 13:28:54', 1),
-(4, 6, 'redmi', 'redmi note 8', 544, 56, 125, '221186570_4.png', 'dvdsv', 'sdvdsvdv', 'sdvdsv', 'sdvdsv', 'sdvdsv', '2020-08-01 13:30:33', 1),
-(5, 6, 'redmi', 'redmi note 9 pro', 57786, 145, 32, '180652189_5.png', 'dvdsv', 'sdvdsv', 'sdvdsv', 'dvdsv', 'sdvds', '2020-08-01 13:31:30', 1),
-(6, 6, 'redmi', 'redmi 8a', 25454, 4432, 14, '289883457_6.png', 'dddv', 'dvds', 'sdvdsvdv', 'sdvsd', 'svdsv', '2020-08-01 13:34:04', 1),
-(7, 6, 'redmi', 'xiaomi mi 10 pro', 4878, 44, 24, '481485932_8.png', 'sfvf', 'ffvfb', 'fvf', 'ff', 'dfbfb', '2020-08-01 13:36:50', 1),
-(8, 5, 'nokia', 'nokia 6.1 plus', 4548, 144, 54, '898523016_10.png', 'hgg', 'hug', 'dvdsvv', 'sdvd', 'sdvdsv', '2020-08-01 13:39:06', 1),
-(10, 4, 'samsung', 'samsung galaxy s6', 1354, 121, 321, '883084647_11.png', 'addd', 'sdvdsvv', 'svfsv', 'sddvd', 'vdvd', '2020-08-01 13:43:49', 1),
-(11, 4, 'samsung', 'samsung galaxy s7', 5445, 1545, 44, '485544493_12.png', 'svsv', 'sdvds', 'svvbfbfs', 'svffv', 'sdvsdvv', '2020-08-01 13:45:43', 1),
-(12, 3, 'motorola', 'moto g8 power lite', 54454, 2454, 121, '626772845_13.png', 'sdvdsvdv', 'sdvdsdv', 'sdvdsvdv', 'sdvdsvdv', 'svsdvdsv', '2020-08-01 13:47:37', 1),
-(13, 3, 'motorola', 'motorola es6', 35454, 5455, 221, '805654220_14.png', 'dvdv', 'sdvdvdsv', 'dvdvv', 'dvdv', 'dvdsv', '2020-08-01 13:49:03', 1),
-(14, 2, 'apple', 'apple iphone 7', 2154, 554, 45, '416297338_15.png', 'dvdvv', 'vdsvdv', 'acdv', 'sdvdsv', 'sdvdsv', '2020-08-01 13:51:52', 1);
+INSERT INTO `product` (`id`, `categories_id`, `category_name`, `product_name`, `best_seller`, `product_mrp`, `product_sale_price`, `product_qty`, `product_image`, `short_desc`, `long_desc`, `meta_title`, `meta_desc`, `meta_keyword`, `created_at`, `status`, `added_by`) VALUES
+(1, 4, 'samsung', 'galaxy s6 edge', 1, 644, 50, 10, '780317976_1.png', 'sdvd', 'sdvdsvvvsdvvsdv sdvvdsvv sdvvdvv sdvdvdsv', 'sdvds', 'sdvd', 'sdvdv', '2020-08-01 13:04:02', 1, 1),
+(2, 5, 'nokia', 'nokia 6600', 1, 200, 90, 50, '119354896_2.png', 'dvdvdv', 'sdvdsv', 'vdv', 'dvdv', 'sdvv', '2020-08-01 13:26:51', 1, 1),
+(3, 6, 'redmi', 'redmi note 7 pro', 1, 562, 20, 20, '824297576_3.png', 'dvd', 'sdvdsv', 'vddsvds', 'sdvdsv', 'dvdsvdv', '2020-08-01 13:28:54', 1, 1),
+(4, 6, 'redmi', 'redmi note 8', 1, 544, 56, 125, '221186570_4.png', 'dvdsv', 'sdvdsvdv', 'sdvdsv', 'sdvdsv', 'sdvdsv', '2020-08-01 13:30:33', 1, 1),
+(5, 6, 'redmi', 'redmi note 9 pro', 0, 57786, 145, 32, '180652189_5.png', 'dvdsv', 'sdvdsv', 'sdvdsv', 'dvdsv', 'sdvds', '2020-08-01 13:31:30', 1, 1),
+(6, 6, 'redmi', 'redmi 8a', 0, 25454, 4432, 14, '289883457_6.png', 'dddv', 'dvds', 'sdvdsvdv', 'sdvsd', 'svdsv', '2020-08-01 13:34:04', 1, 1),
+(7, 6, 'redmi', 'xiaomi mi 10 pro', 0, 4878, 44, 24, '481485932_8.png', 'sfvf', 'ffvfb', 'fvf', 'ff', 'dfbfb', '2020-08-01 13:36:50', 1, 1),
+(8, 5, 'nokia', 'nokia 6.1 plus', 0, 4548, 144, 54, '898523016_10.png', 'hgg', 'hug', 'dvdsvv', 'sdvd', 'sdvdsv', '2020-08-01 13:39:06', 1, 1),
+(10, 4, 'samsung', 'samsung galaxy s6', 0, 1354, 121, 321, '883084647_11.png', 'addd', 'sdvdsvv', 'svfsv', 'sddvd', 'vdvd', '2020-08-01 13:43:49', 1, 1),
+(11, 4, 'samsung', 'samsung galaxy s7', 0, 5445, 1545, 44, '485544493_12.png', 'svsv', 'sdvds', 'svvbfbfs', 'svffv', 'sdvsdvv', '2020-08-01 13:45:43', 1, 1),
+(12, 3, 'motorola', 'moto g8 power lite', 0, 54454, 2454, 121, '626772845_13.png', 'sdvdsvdv', 'sdvdsdv', 'sdvdsvdv', 'sdvdsvdv', 'svsdvdsv', '2020-08-01 13:47:37', 1, 1),
+(13, 3, 'motorola', 'motorola es6', 0, 35454, 5455, 221, '805654220_14.png', 'dvdv', 'sdvdvdsv', 'dvdvv', 'dvdv', 'dvdsv', '2020-08-01 13:49:03', 1, 1),
+(14, 2, 'apple', 'apple iphone 7', 0, 2154, 554, 45, '416297338_15.png', 'dvdvv', 'vdsvdv', 'acdv', 'sdvdsv', 'sdvdsv', '2020-08-01 13:51:52', 1, 1),
+(37, 2, 'apple', 'test vendor 1', 0, 4, 4, 4, '865598543_1.png', 'rrghy', 'trhg', 'rgg', 'th', 'th', '2020-11-16 06:27:26', 1, 2),
+(38, 3, 'motorola', 'vendor 2', 1, 453, 3465, 543, '413971740_6.png', 'trht', 'th', 're', 'th', 'th', '2020-11-16 06:57:22', 0, 3);
 
 -- --------------------------------------------------------
 
@@ -214,15 +225,36 @@ CREATE TABLE `registered_users` (
   `u_email` varchar(200) NOT NULL,
   `u_password` varchar(200) NOT NULL,
   `u_mobile` bigint(12) NOT NULL,
+  `encrypt_email` varchar(255) NOT NULL,
   `added_on` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `registered_users`
 --
 
-INSERT INTO `registered_users` (`id`, `u_name`, `u_email`, `u_password`, `u_mobile`, `added_on`) VALUES
-(1, 'piyush', 'piyush@gmail.com', '$2y$10$D9/ErVxk3SqsR7SdHqLxlexZ2rJ3iYAzEOM0xSgrz2hOw/.L6XdBi', 8552857555, '2020-08-01 03:18:10');
+INSERT INTO `registered_users` (`id`, `u_name`, `u_email`, `u_password`, `u_mobile`, `encrypt_email`, `added_on`) VALUES
+(5, 'piyush shyam', 'piyush.d.shyam@gmail.com', '$2y$10$dAFnooz1nX0LnATFaeboRu6znIdckWrRiwQRUBbTvoZqZ2iWArM0S', 4545454545, '91ec7ceae1acccb28a07dbf541732f23', '2020-08-27 11:22:52');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `wishlist`
+--
+
+CREATE TABLE `wishlist` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `added_on` date NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `wishlist`
+--
+
+INSERT INTO `wishlist` (`id`, `user_id`, `product_id`, `added_on`) VALUES
+(17, 1, 7, '2020-08-19');
 
 --
 -- Indexes for dumped tables
@@ -279,6 +311,12 @@ ALTER TABLE `registered_users`
   ADD UNIQUE KEY `u_email` (`u_email`);
 
 --
+-- Indexes for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -286,7 +324,7 @@ ALTER TABLE `registered_users`
 -- AUTO_INCREMENT for table `admin_user`
 --
 ALTER TABLE `admin_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -304,7 +342,7 @@ ALTER TABLE `contact_us`
 -- AUTO_INCREMENT for table `order`
 --
 ALTER TABLE `order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `order_details`
@@ -322,13 +360,19 @@ ALTER TABLE `order_status_data`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `registered_users`
 --
 ALTER TABLE `registered_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `wishlist`
+--
+ALTER TABLE `wishlist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

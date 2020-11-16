@@ -2,7 +2,12 @@
   require_once("../connection.inc.php");
   require_once("admin_constant.php");
   require_once("../functions.inc.php");
- 
+
+  $condition = '';
+  if($_SESSION['ADMIN_ROLE'] === '1'){
+    $condition = " AND `added_by`='".$_SESSION['ADMIN_ID']."'";
+  }
+
   if(isset($_POST['product_name']) && isset($_POST['pro_id'])){
     if($_FILES['product_image']['name'] === ''){
       $product_image = $_POST['old_product_image'];
@@ -27,7 +32,7 @@
     $meta_keyword = get_safe_value($conn,strtolower($_POST['meta_keyword']));
     $short_desc = get_safe_value($conn,strtolower($_POST['short_desc']));
     $long_desc = get_safe_value($conn,strtolower($_POST['long_desc']));
-    $sql = "UPDATE product SET `categories_id`='{$categories_id}',`product_name`='{$product_name}',`best_seller`='{$best_seller}',`product_mrp`='{$product_mrp}',`product_sale_price`='{$product_sale_price}',`product_qty`='{$product_qty}',`product_image`='{$product_image}',`short_desc`='{$short_desc}',`long_desc`='{$long_desc}',`meta_title`='{$meta_title}',`meta_desc`='{$meta_desc}',`meta_keyword`='{$meta_keyword}' WHERE `id`='{$_POST['pro_id']}'";
+    $sql = "UPDATE product SET `categories_id`='{$categories_id}',`product_name`='{$product_name}',`best_seller`='{$best_seller}',`product_mrp`='{$product_mrp}',`product_sale_price`='{$product_sale_price}',`product_qty`='{$product_qty}',`product_image`='{$product_image}',`short_desc`='{$short_desc}',`long_desc`='{$long_desc}',`meta_title`='{$meta_title}',`meta_desc`='{$meta_desc}',`meta_keyword`='{$meta_keyword}' WHERE `id`='{$_POST['pro_id']}' $condition";
     $result = mysqli_query($conn,$sql);
     if($result === true){
       echo '1';

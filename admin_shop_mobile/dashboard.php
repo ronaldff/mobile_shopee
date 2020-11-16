@@ -1,13 +1,14 @@
 <?php include_once("admin_constant.php"); ?>
 <?php include_once("header_admin.php"); ?>
 <?php include_once("menu_admin.php"); ?>
+
   <!-- start page content -->
   <div class="page-content-wrapper">
     <div class="page-content">
       <div class="page-bar">
           <div class="page-title-breadcrumb">
               <div class=" pull-left">
-                  <div class="page-title">Dashboard</div>
+                  <div class="page-title">Dashboard </div>
               </div>
               <ol class="breadcrumb page-breadcrumb pull-right">
                   <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="dashboard.php">Home</a>&nbsp;<i class="fa fa-angle-right"></i>

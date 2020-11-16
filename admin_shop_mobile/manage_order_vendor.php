@@ -1,12 +1,11 @@
 <?php 
 require_once("../connection.inc.php");
-
 ?>
 <?php include_once("admin_constant.php"); ?>
 <?php include_once("header_admin.php"); ?>
 <?php include_once("menu_admin.php"); ?>
 <?php require_once("../functions.inc.php"); ?>
-<?php isAdmin() ?>
+<?php isAdminRole() ?>
 <!-- start page content -->
 
 <div class="page-content-wrapper">
@@ -14,14 +13,14 @@ require_once("../connection.inc.php");
     <div class="page-bar">
       <div class="page-title-breadcrumb">
         <div class=" pull-left">
-          <div class="page-title">Manage Orders</div>
+          <div class="page-title">Vendor Manage Orders</div>
         </div>
         <ol class="breadcrumb page-breadcrumb pull-right">
           <li><i class="fa fa-home"></i>&nbsp;<a class="parent-item" href="<?php echo ROUTE_AJAX_URL;?>dashboard.php">Home</a>&nbsp;<i class="fa fa-angle-right"></i>
           </li>
-          <li>&nbsp;<a class="parent-item" href="<?php echo ROUTE_AJAX_URL;?>manage_order.php">Orders</a>&nbsp;<i class="fa fa-angle-right"></i>
+          <li>&nbsp;<a class="parent-item" href="<?php echo ROUTE_AJAX_URL;?>manage_order_vendor.php">Vendor Orders</a>&nbsp;<i class="fa fa-angle-right"></i>
           </li>
-          <li class="active">List Orders</li>
+          <li class="active">Vendor List Orders</li>
         </ol>
       </div>
     </div>
@@ -30,32 +29,32 @@ require_once("../connection.inc.php");
       <div class="col-md-12 col-sm-12">
         <div class="card  card-box">
           <div class="card-head">
-            <header>Orders</header>
+            <header>Vendor Orders</header>
           </div>
           <div class="card-body ">
             <div>
               <div class=" pull-left">
-                <div class="page-title" id="product_list_title">Orders List</div>
+                <div class="page-title" id="product_list_title">Vendor Orders List</div>
               </div>
             </div>
             <div>
               <table class="table table-bordered table-striped text-center font-baloo">
                 <thead class="text-uppercase">
                   <tr>
-                    <th>Sr.no</th>
+                    <th>order id</th>
+                    <th>product name</th>
+                    <th>product qty</th>
                     <th>order date</th>
                     <th>address</th>
                     <th>payment type</th>
                     <th>payment status</th>
                     <th>order status</th>
                     <th>Role</th>
-                    <th>Added By</th>
-
                   </tr>
                 </thead>
                 <tbody>
                   <?php
-                    $result = mysqli_query($conn,"SELECT `order`.user_address,`admin_user`.admin_user,`order`.added_on,`order`.user_city,`order`.user_post_code,`order`.order_status,`order`.payment_type,`order`.payment_status,`order_details`.id,`order_details`.qty,`product`.added_by,`product`.product_name FROM order_details INNER JOIN `order` ON order_details.order_id = `order`.id INNER JOIN product ON order_details.product_id = product.id INNER JOIN admin_user ON `product`.added_by = `admin_user`.id ORDER BY `order`.id DESC");
+                    $result = mysqli_query($conn,"SELECT `order`.user_address,`order`.added_on,`order`.user_city,`order`.user_post_code,`order`.order_status,`order`.payment_type,`order`.payment_status,`order_details`.id,`order_details`.qty,`product`.added_by,`product`.product_name FROM order_details INNER JOIN `order` ON order_details.order_id = `order`.id INNER JOIN product ON order_details.product_id = product.id WHERE product.added_by = '{$_SESSION['ADMIN_ID']}' ORDER BY `order`.id DESC");
                     if(mysqli_num_rows($result) > 0) {
                       while($row = mysqli_fetch_assoc($result)){
                           $order_status = mysqli_fetch_assoc(mysqli_query($conn,"SELECT status_name FROM order_status_data WHERE id='{$row['order_status']}'"));
@@ -63,8 +62,10 @@ require_once("../connection.inc.php");
                     
                       <tr>
                         <td>
-                          <a href="<?php echo ROUTE_AJAX_URL; ?>manage_order_details.php?id=<?php echo $row['id'];  ?>"><button type="button" class="btn btn-warning font-size-12"><?php echo $row['id']; ?></button></a>
+                          <a href="javascript:void(0);"><button type="button" class="btn btn-warning font-size-12"><?php echo $row['id']; ?></button></a>
                         </td>
+                        <td><?php echo $row['product_name']; ?></td>
+                        <td><?php echo $row['qty']; ?></td>
                         <td><?php echo $row['added_on']; ?></td>
                         <td><strong>Address:</strong> <?php echo $row['user_address']; ?>&nbsp; <strong>City/Sate:</strong> <?php echo $row['user_city']; ?>&nbsp; <strong>Pincode:</strong> <?php echo $row['user_post_code']; ?></td>
                         <td><?php echo $row['payment_type']; ?></td>
@@ -77,7 +78,6 @@ require_once("../connection.inc.php");
                             <td>vendor</td>
                         <?php    }
                         ?>
-                        <td><?php echo $row['admin_user']; ?></td>
                       </tr>
                   <?php }}  ?>
                 </tbody>

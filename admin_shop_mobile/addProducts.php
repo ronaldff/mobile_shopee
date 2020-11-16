@@ -3,7 +3,6 @@
  require_once("admin_constant.php");
  require_once("../functions.inc.php");
 
-
   if(isset($_FILES['product_image']['name']) && !empty($_FILES['product_image']['name'])){
     $product_name = get_safe_value($conn,strtolower($_POST['product_name']));
     $best_seller = get_safe_value($conn,$_POST['best_seller']);
@@ -11,10 +10,7 @@
     $db_product_data = mysqli_query($conn, $sql);
     if(mysqli_num_rows($db_product_data) >= 0){
       $row = mysqli_fetch_assoc($db_product_data);
-      if($row['product_name'] === $product_name){
-        echo "1";
-        return false;
-      } else {
+      if(empty($row)){
         $product_image = rand(111111111,999999999).'_'.$_FILES['product_image']['name'];
         $product_image_type = strtolower(pathinfo($product_image,PATHINFO_EXTENSION));
         if($product_image_type === 'jpg' || $product_image_type === 'jpeg' || $product_image_type === 'png'){
@@ -30,20 +26,22 @@
           $category_name = $category_Data['categories_name'];
           $meta_desc = get_safe_value($conn,strtolower($_POST['meta_desc']));
           $meta_keyword = get_safe_value($conn,strtolower($_POST['meta_keyword']));
+          $admin_id = trim($_SESSION['ADMIN_ID']);
           $short_desc = get_safe_value($conn,strtolower($_POST['short_desc']));
           $long_desc = get_safe_value($conn,strtolower($_POST['long_desc']));
-          $sql = "INSERT INTO product (categories_id,category_name,product_name,best_seller,product_mrp,product_sale_price,product_qty,product_image,short_desc,long_desc,meta_title,meta_desc,meta_keyword) VALUES ('{$categories_id}','{$category_name}','{$product_name}','{$best_seller}','{$product_mrp}','{$product_sale_price}','{$product_qty}','{$product_image}','{$short_desc}','{$long_desc}','{$meta_title}','{$meta_desc}','{$meta_keyword}')";
+          $sql = "INSERT INTO product (categories_id,category_name,product_name,best_seller,product_mrp,product_sale_price,product_qty,product_image,short_desc,long_desc,meta_title,meta_desc,meta_keyword, added_by) VALUES ('{$categories_id}','{$category_name}','{$product_name}','{$best_seller}','{$product_mrp}','{$product_sale_price}','{$product_qty}','{$product_image}','{$short_desc}','{$long_desc}','{$meta_title}','{$meta_desc}','{$meta_keyword}', '{$admin_id}')";
           $result = mysqli_query($conn, $sql);
           if($result === true){
             echo "2";
           }
         } else {
           echo '3';
-          return false;
         }
-        
+      } else {
+        if(trim($row['product_name']) === $product_name){
+          echo "1";
+        } 
       }
     }
   }
-  
 ?>

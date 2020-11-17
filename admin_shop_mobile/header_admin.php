@@ -85,7 +85,7 @@
               <li class="dropdown dropdown-user">
                 <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                   <?php if($_SESSION['ADMIN_ROLE'] === '1') { ?>
-                    <img src="<?php echo ADMIN_LOGIN_LINK_URL; ?>img/vendor.png" class="img-responsive" alt="vendor">
+                    <img src="<?php echo ADMIN_LOGIN_LINK_URL; ?>img/dp.jpg" class="img-responsive" alt="vendor">
                   <?php  } else { ?>
                     <img alt="admin"  src="<?php  
                       defined("ADMIN_LOGIN_LINK_URL") ?  print_r(ADMIN_LOGIN_LINK_URL) : "";

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 16, 2020 at 03:07 PM
+-- Generation Time: Nov 17, 2020 at 12:51 PM
 -- Server version: 10.4.14-MariaDB
 -- PHP Version: 7.4.11
 
@@ -31,20 +31,20 @@ CREATE TABLE `admin_user` (
   `id` int(11) NOT NULL,
   `admin_user` varchar(200) NOT NULL,
   `admin_password` varchar(200) NOT NULL,
-  `role` int(11) NOT NULL,
+  `vendor_show_password` varchar(200) DEFAULT NULL,
+  `admin_role` int(11) NOT NULL,
   `email` varchar(50) NOT NULL,
   `mobile` bigint(15) NOT NULL,
-  `status` int(11) NOT NULL
+  `admin_status` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `admin_user`
 --
 
-INSERT INTO `admin_user` (`id`, `admin_user`, `admin_password`, `role`, `email`, `mobile`, `status`) VALUES
-(1, 'piyush', 'piyush', 0, 'admin@gmail.com', 5555555555, 1),
-(2, 'vendor', 'vendor', 1, 'vendor@gmail.com', 2244556677, 1),
-(3, 'vendor2', 'vendor2', 1, 'vendor2@gmail.com', 1234567894, 1);
+INSERT INTO `admin_user` (`id`, `admin_user`, `admin_password`, `vendor_show_password`, `admin_role`, `email`, `mobile`, `admin_status`) VALUES
+(1, 'piyush', 'a1d52fb9e6adfb2d64eaa229d64df5bddcd2201f', '', 0, 'admin@gmail.com', 5555555555, 1),
+(7, 'vendor', '5cb2c992ee64f4e98c951a31381b5a0ed9eac805', 'vendor', 1, 'vendor@gmail.com', 4556789456, 1);
 
 -- --------------------------------------------------------
 
@@ -202,7 +202,7 @@ INSERT INTO `product` (`id`, `categories_id`, `category_name`, `product_name`, `
 (3, 6, 'redmi', 'redmi note 7 pro', 1, 562, 20, 20, '824297576_3.png', 'dvd', 'sdvdsv', 'vddsvds', 'sdvdsv', 'dvdsvdv', '2020-08-01 13:28:54', 1, 1),
 (4, 6, 'redmi', 'redmi note 8', 1, 544, 56, 125, '221186570_4.png', 'dvdsv', 'sdvdsvdv', 'sdvdsv', 'sdvdsv', 'sdvdsv', '2020-08-01 13:30:33', 1, 1),
 (5, 6, 'redmi', 'redmi note 9 pro', 0, 57786, 145, 32, '180652189_5.png', 'dvdsv', 'sdvdsv', 'sdvdsv', 'dvdsv', 'sdvds', '2020-08-01 13:31:30', 1, 1),
-(6, 6, 'redmi', 'redmi 8a', 0, 25454, 4432, 14, '289883457_6.png', 'dddv', 'dvds', 'sdvdsvdv', 'sdvsd', 'svdsv', '2020-08-01 13:34:04', 1, 1),
+(6, 6, 'redmi', 'redmi 8a', 0, 25454, 4432, 14, '289883457_6.png', 'dddv', 'dvds', 'sdvdsvdv', 'sdvsd', 'svdsv', '2020-08-01 13:34:04', 0, 1),
 (7, 6, 'redmi', 'xiaomi mi 10 pro', 0, 4878, 44, 24, '481485932_8.png', 'sfvf', 'ffvfb', 'fvf', 'ff', 'dfbfb', '2020-08-01 13:36:50', 1, 1),
 (8, 5, 'nokia', 'nokia 6.1 plus', 0, 4548, 144, 54, '898523016_10.png', 'hgg', 'hug', 'dvdsvv', 'sdvd', 'sdvdsv', '2020-08-01 13:39:06', 1, 1),
 (10, 4, 'samsung', 'samsung galaxy s6', 0, 1354, 121, 321, '883084647_11.png', 'addd', 'sdvdsvv', 'svfsv', 'sddvd', 'vdvd', '2020-08-01 13:43:49', 1, 1),
@@ -264,7 +264,8 @@ INSERT INTO `wishlist` (`id`, `user_id`, `product_id`, `added_on`) VALUES
 -- Indexes for table `admin_user`
 --
 ALTER TABLE `admin_user`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `admin_user` (`admin_user`);
 
 --
 -- Indexes for table `categories`
@@ -324,7 +325,7 @@ ALTER TABLE `wishlist`
 -- AUTO_INCREMENT for table `admin_user`
 --
 ALTER TABLE `admin_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `categories`

@@ -74,6 +74,9 @@ $(document).ready(function(){
             if(data == "wrong credential"){
                displayMessage("please insert correct credential", false);
                $("#login_form")[0].reset();
+            }else if(data == "deactivate"){
+               displayMessage("Account Deactivated. Please contact to admin for activate the account", false);
+               $("#login_form")[0].reset();
             } else {
                location.href = data;
             }

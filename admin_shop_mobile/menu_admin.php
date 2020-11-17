@@ -15,7 +15,7 @@
                   <div class="row">
                     <div class="sidebar-userpic">
                       <?php if($_SESSION['ADMIN_ROLE'] === '1') { ?>
-                        <img src="<?php echo ADMIN_LOGIN_LINK_URL; ?>img/vendor.png" class="img-responsive" alt="vendor"> </div>
+                        <img src="<?php echo ADMIN_LOGIN_LINK_URL; ?>img/dp.jpg" class="img-responsive" alt="vendor"> </div>
                       <?php  } else { ?>
                         <img src="<?php echo ADMIN_LOGIN_LINK_URL; ?>img/piyush.jpg" class="img-responsive" alt="admin"> </div>
                       <?php   }  ?>
@@ -62,7 +62,7 @@
 
                 <li class="nav-item">
                       <a href="<?php echo ROUTE_AJAX_URL; ?>manage_order.php" class="nav-link nav-toggle">
-                          <i class="material-icons">vpn_key</i>
+                          <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                           <span class="title">Manage Order</span>
                           <span class="arrow"></span>
                       </a>
@@ -75,6 +75,14 @@
                   <a href="<?php echo ROUTE_AJAX_URL; ?>categories.php" class="nav-link nav-toggle">
                       <i class="material-icons">business_center</i>
                       <span class="title">Categories</span>
+                      <span class="arrow"></span>
+                  </a>
+              </li>
+
+              <li class="nav-item">
+                  <a href="<?php echo ROUTE_AJAX_URL; ?>vendor.php" class="nav-link nav-toggle">
+                      <i class="fa fa-truck" aria-hidden="true"></i>
+                      <span class="title">Vendor Management</span>
                       <span class="arrow"></span>
                   </a>
               </li>

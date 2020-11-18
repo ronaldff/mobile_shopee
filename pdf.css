@@ -1,0 +1,54 @@
+    .table {
+        width: 100%;
+        max-width: 100%;
+        margin-bottom: 1rem;
+        background-color: transparent;
+    }
+
+    .pdf_img{
+       width:30px; 
+    }
+
+    .font-baloo{
+        font-family: "Baloo Thambi 2", cursive;
+    }
+    
+    .table-bordered {
+        border: 1px solid #dee2e6;
+    }
+    
+    table {
+        border-collapse: collapse;
+        display: table;
+    }
+    
+    .text-center {
+        text-align: center!important;
+    }
+    
+    .text-uppercase {
+        text-transform: uppercase!important;
+    }
+    
+    th {
+        text-align: inherit;
+    }
+    
+    .table td, .table th {
+        padding: .75rem;
+        vertical-align: top;
+        border-top: 1px solid #dee2e6;
+    }
+    
+    .table-bordered td, .table-bordered th {
+        border: 1px solid #dee2e6;
+    }
+    
+    .table thead th {
+        vertical-align: bottom;
+        border-bottom: 2px solid #dee2e6;
+    }
+    
+    .table-bordered thead td, .table-bordered thead th {
+        border-bottom-width: 2px;
+    }

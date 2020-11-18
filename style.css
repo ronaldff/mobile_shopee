@@ -637,7 +637,6 @@ button.email_sent_otp{
     background: #fff;
 }
 
-
 .category {
     overflow: hidden;
     position: relative;
@@ -661,24 +660,13 @@ button.email_sent_otp{
     font-weight: 700;
 }
 
-/* .category:hover{
-    border: 1px solid;
-    background: currentColor;
-} */
 
 .footer_class{
-    position: fixed;
+  position: relative;
   left: 0;
   bottom: 0;
   width: 100%;
 }
-
-
-
-
-
-
-
 
 
 

@@ -20,7 +20,8 @@
               <table class="table table-bordered table-striped text-center font-baloo">
               	<thead class="text-uppercase">
               		<tr>
-              			<th>Sr.no</th>
+						<th>Sr.no</th>
+						<th>Action</th>
               			<th>order date</th>
               			<th>address</th>
               			<th>payment type</th>
@@ -30,17 +31,20 @@
               	</thead>
               	<tbody>
               		<?php
-										$result = mysqli_query($conn,"SELECT * FROM `order` WHERE user_id='{$_SESSION['REGISTER_USER_ID']}' ORDER BY `added_on` desc");
+						$result = mysqli_query($conn,"SELECT * FROM `order` WHERE user_id='{$_SESSION['REGISTER_USER_ID']}' ORDER BY `added_on` desc");
 										
               			if(mysqli_num_rows($result) > 0) {
 	              			while($row = mysqli_fetch_assoc($result)){ 
-													$order_status = mysqli_fetch_assoc(mysqli_query($conn,"SELECT status_name FROM order_status_data WHERE id='{$row['order_status']}'"));
-	              				?>
+								$order_status = mysqli_fetch_assoc(mysqli_query($conn,"SELECT status_name FROM order_status_data WHERE id='{$row['order_status']}'"));
+							?>
 	              		
 		              		<tr>
 		              			<td>
-		              				<a href="<?php echo SITE_URL; ?>order_details.php?id=<?php echo $row['id'];  ?>"><button type="button" class="btn btn-warning font-size-12"><?php echo $row['id']; ?></button></a>
-		              			</td>
+									<a href="<?php echo SITE_URL; ?>order_details.php?id=<?php echo $row['id'];  ?>"><button type="button" class="btn btn-warning font-size-12"><?php echo $row['id']; ?></button></a>
+								</td>
+								<td>
+									<a href="<?php echo SITE_URL; ?>order_pdf.php?id=<?php echo $row['id'];  ?>"><button type="button" class="btn btn-primary font-size-12">PDF</button></a>
+								</td>
 		              			<td><?php echo $row['added_on']; ?></td>
 		              			<td><strong>Address:</strong> <?php echo $row['user_address']; ?>&nbsp; <strong>City/Sate:</strong> <?php echo $row['user_city']; ?>&nbsp; <strong>Pincode:</strong> <?php echo $row['user_post_code']; ?></td>
 		              			<td><?php echo $row['payment_type']; ?></td>

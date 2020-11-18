@@ -1,5 +1,6 @@
 <?php 
 require_once("../connection.inc.php");
+require_once("../front_constant_inc.php");
 
 ?>
 <?php include_once("admin_constant.php"); ?>
@@ -43,6 +44,7 @@ require_once("../connection.inc.php");
                 <thead class="text-uppercase">
                   <tr>
                     <th>Sr.no</th>
+                    <th>Action</th>
                     <th>order date</th>
                     <th>address</th>
                     <th>payment type</th>
@@ -55,7 +57,8 @@ require_once("../connection.inc.php");
                 </thead>
                 <tbody>
                   <?php
-                    $result = mysqli_query($conn,"SELECT `order`.user_address,`admin_user`.admin_user,`order`.added_on,`order`.user_city,`order`.user_post_code,`order`.order_status,`order`.payment_type,`order`.payment_status,`order_details`.id,`order_details`.qty,`product`.added_by,`product`.product_name FROM order_details INNER JOIN `order` ON order_details.order_id = `order`.id INNER JOIN product ON order_details.product_id = product.id INNER JOIN admin_user ON `product`.added_by = `admin_user`.id ORDER BY `order`.id DESC");
+                  
+                    $result = mysqli_query($conn,"SELECT `order`.user_address,`admin_user`.admin_user,`order`.added_on,`order`.user_city,`order`.user_post_code,`order`.order_status,`order`.payment_type,`order`.payment_status,`order`.id AS order_id,`order_details`.id,`order_details`.qty,`product`.added_by,`product`.product_name FROM order_details INNER JOIN `order` ON order_details.order_id = `order`.id INNER JOIN product ON order_details.product_id = product.id INNER JOIN admin_user ON `product`.added_by = `admin_user`.id ORDER BY `order`.id DESC");
                     if(mysqli_num_rows($result) > 0) {
                       while($row = mysqli_fetch_assoc($result)){
                           $order_status = mysqli_fetch_assoc(mysqli_query($conn,"SELECT status_name FROM order_status_data WHERE id='{$row['order_status']}'"));
@@ -64,6 +67,10 @@ require_once("../connection.inc.php");
                       <tr>
                         <td>
                           <a href="<?php echo ROUTE_AJAX_URL; ?>manage_order_details.php?id=<?php echo $row['id'];  ?>"><button type="button" class="btn btn-warning font-size-12"><?php echo $row['id']; ?></button></a>
+                        </td>
+                        <td>
+                          <a href="<?php echo SITE_URL; ?>order_pdf.php?id=<?php echo $row['order_id'];  ?>"><button type="button" class="btn btn-primary font-size-12">PDF</button></a>
+                        </td>
                         </td>
                         <td><?php echo $row['added_on']; ?></td>
                         <td><strong>Address:</strong> <?php echo $row['user_address']; ?>&nbsp; <strong>City/Sate:</strong> <?php echo $row['user_city']; ?>&nbsp; <strong>Pincode:</strong> <?php echo $row['user_post_code']; ?></td>

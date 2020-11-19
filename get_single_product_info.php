@@ -39,17 +39,37 @@
                             echo $single_product_data['product_image'];
                           }
                          ?>" alt="product" class="img-fluid">
-                    <div class="form-row pt-4 font-size-16 font-baloo">
+                    <?php 
+                          $soldQty = productQTYSoldByProductId($conn, $single_product_data['id']);
+                          $cart_show = 'yes';
+                          if($single_product_data['product_qty'] > $soldQty){
+                            $stock =  "IN STOCK";
+                            
+                          } else {
+                            $stock =  "NOT IN STOCK";
+                            $cart_show = '';
+                          }
+                      
+                    ?>
+                    <?php if($cart_show !=""){ ?>
+                      <div class="form-row pt-4 font-size-16 font-baloo">
                         <div class="col">
                             <a href="<?php echo SITE_URL; ?>checkout.php"><button type="submit" class="btn btn-danger form-control">Proceed to Buy</button></a>
                         </div>
                         <div class="col">
                             <button type="button" class="btn btn-warning form-control" onclick = "manageCart(<?php echo $single_product_data['id']  ?>,'add')">Add to Cart</button>
                         </div>
-                    </div>
+                      </div>
+                    <?php  } ?>
+                    
                 </div>
                 <div class="col-sm-6 py-5">
-                    <h5 class="font-baloo font-size-20"><?php (isset($single_product_data) && !empty($single_product_data)) ? print_r( ucwords($single_product_data['product_name'])) : " " ?></h5>
+                    <h5 class="font-baloo font-size-20">
+                      <?php (isset($single_product_data) && !empty($single_product_data)) ? print_r( ucwords($single_product_data['product_name'])) : " " ?>
+                      <strong class="bg-warning px-2 text-white">
+                        <?php echo $stock; ?>
+                      </strong>
+                    </h5>
                     <small>by Samsung</small>
                     <div class="d-flex">
                         <div class="rating text-warning font-size-12">

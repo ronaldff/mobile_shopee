@@ -82,14 +82,14 @@
 						if(isset($resultarray) && !empty($resultarray) && count($resultarray) > 0){
 							foreach ($resultarray as $key => $category) { 
 								?>
-								<li class="nav-item">
+								<li class="nav-item active">
 									<a class="nav-link" href="<?php echo SITE_URL; ?>category_wise_product.php?id=<?php echo $category['id'];  ?>"><?php echo ucfirst($category['categories_name']); ?></a>
 								</li>
 					<?php		}
 						}
 						
 					?>
-						<li class="nav-item">
+						<li class="nav-item active">
 							<a class="nav-link" href="<?php  echo SITE_URL; ?>contact.php">Contact</a>
 						</li>
 				</ul>

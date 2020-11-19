@@ -12,6 +12,16 @@
   $qty = get_safe_value($conn, $qty);
   $type = get_safe_value($conn, $_POST['type']);
 
+  $soldQty = productQTYSoldByProductId($conn, $productid);
+  $productQty = productQtyInsertedInDatabase($conn,$productid);
+
+  $pendingQty = $productQty - $soldQty;
+
+  if($qty > $pendingQty){
+    echo "not_available";
+    die();
+  }
+
   if($type === "add"){
     $obj = new Add_to_cart_inc();
     $obj->add_to_cart($productid,$qty);

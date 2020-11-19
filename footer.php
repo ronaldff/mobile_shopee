@@ -44,9 +44,15 @@
 				if(type === 'update' || type === 'remove'){
 					window.location.href = window.location.href;
 				}
-				$("#shopping_data").html(data);
-				getWishlistData(pid);
-				fetchWishlistData();
+
+				if(data === "not_available"){
+					alert("Qty is not Available");
+				} else {
+					$("#shopping_data").html(data);
+					getWishlistData(pid);
+					fetchWishlistData();
+				}
+				
 			}
 		});
 
@@ -446,3 +452,4 @@
 	
 	
 </script>
+

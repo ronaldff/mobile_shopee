@@ -35,6 +35,8 @@
                         <th>MRP</th>
                         <th>Sale Price</th>
                         <th>QTY</th>
+                        <th>Available QTY</th>
+                        <th>Sold QTY</th>
                         <th>Added By</th>
                         <th>Status</th>
                         <th>Created At</th>
@@ -44,6 +46,8 @@
                   <tbody>
               ';
    while ($row = mysqli_fetch_assoc($result)) {
+        $soldQty = productQTYSoldByProductId($conn, $row['id']);
+        $pendingQty = $row['product_qty'] - $soldQty;
      $output .= "<tr>
                   <td>".++$i."</td>
                   <td>{$row['id']}</td>
@@ -52,7 +56,14 @@
                   <td><a href='".PRODUCT_IMAGE_URL."{$row['product_image']}' target='_blank'><img target='_blank' src='".PRODUCT_IMAGE_URL."{$row['product_image']}' alt='productImg' style='width:30px;' /></a></td>
                   <td>{$row['product_mrp']}</td>
                   <td>{$row['product_sale_price']}</td>
-                  <td>{$row['product_qty']}</td>";
+                  <td>{$row['product_qty']}</td>
+                  <td>{$pendingQty }</td>";
+                  if($soldQty == ''){
+                    $output .= "<td>not sold</td>";
+                  }else {
+                    $output .= "<td>{$soldQty}</td>";
+                  }
+                 
                   if($row['added_by'] === '1'){
                     $output .= "<td>Admin</td>";
                   } else {

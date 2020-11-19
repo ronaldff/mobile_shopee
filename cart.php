@@ -26,18 +26,38 @@
                     $productDataByCart = getProductById($conn,$key);
                     $totalCalculation =  $totalCalculation + ($productDataByCart['product_sale_price'] * $cartData['qty'] );
                   ?>
+
+                  <?php 
+                    $soldQty = productQTYSoldByProductId($conn, $productDataByCart['id'] );
+                    $pendingQty = $productDataByCart['product_qty'] - $soldQty;
+                    if($productDataByCart['product_qty'] > $soldQty){
+                      $stock =  "IN STOCK";
+                    } else {
+                      $stock =  "NOT IN STOCK";
+                    }
+                  ?>
                 <div class="row border-top py-3 mt-3">
                   <div class="col-sm-2">
                     <img src="<?php echo PRODUCT_URL; ?><?php echo $productDataByCart['product_image']; ?>" style="height: auto;" alt="cart1" class="img-fluid">
                   </div>
                   <div class="col-sm-8">
-                    <h5 class="font-baloo font-size-20"><?php echo ucwords($productDataByCart['product_name']); ?></h5>
+                    <h5 class="font-baloo font-size-20">
+                    <a class="text-dark" style="text-decoration:none" href="<?php echo SITE_URL; ?>get_single_product_info.php?id=<?php echo $productDataByCart['id']; ?>"><?php echo ucwords($productDataByCart['product_name']); ?> </a>
+                      &nbsp; 
+                      <strong class="bg-warning px-2 text-white">
+                        <?php echo $stock; ?>
+                      </strong>
+                    </h5>
                     <small>by <?php echo ucfirst($productDataByCart['category_name']); ?></small>
                     <!-- product rating -->
                     <div class="d-flex">
                       MRP: <?php echo $productDataByCart['product_mrp'];?> ||
                       Sale Price: <?php echo $productDataByCart['product_sale_price'];?> ||
-                      Quantity : <?php echo $cartData['qty'];?>
+                      Cart Quantity : <?php echo $cartData['qty'];?> 
+                     
+                    </div>
+                    <div class="mt-2">
+                      Available Qty: <?php echo $pendingQty;?>
                     </div>
                       <!--  !product rating-->
 
